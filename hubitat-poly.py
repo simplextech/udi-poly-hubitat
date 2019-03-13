@@ -1,8 +1,5 @@
 #!/usr/bin/env python3
-"""
-This is a NodeServer template for Polyglot v2 written in Python2/3
-by Einstein.42 (James Milne) milne.james@gmail.com
-"""
+
 try:
     import polyinterface
 except ImportError:
@@ -12,79 +9,20 @@ import time
 import requests
 from lomond import WebSocket
 
-# Import all of the supported device node-types.
+# Import all of the supported device node-types.  Growing list...
 # Not using a glob '*' import to validate/test node types as introduced for QA/QC
 from node_types import VirtualSwitchNode, NYCEMotionSensorNode, Zooz4n1SensorNode, DomeMotionSensorNode, ZoozPowerSwitchNode, FibaroZW5Node
 
-"""
-Import the polyglot interface module. This is in pypy so you can just install it
-normally. Replace pip with pip3 if you are using python3.
-
-Virtualenv:
-pip install polyinterface
-
-Not Virutalenv:
-pip install polyinterface --user
-
-*I recommend you ALWAYS develop your NodeServers in virtualenv to maintain
-cleanliness, however that isn't required. I do not condone installing pip
-modules globally. Use the --user flag, not sudo.
-"""
-
 LOGGER = polyinterface.LOGGER
-"""
-polyinterface has a LOGGER that is created by default and logs to:
-logs/debug.log
-You can use LOGGER.info, LOGGER.warning, LOGGER.debug, LOGGER.error levels as needed.
-"""
+
 
 class Controller(polyinterface.Controller):
-    """
-    The Controller Class is the primary node from an ISY perspective. It is a Superclass
-    of polyinterface.Node so all methods from polyinterface.Node are available to this
-    class as well.
-
-    Class Variables:
-    self.nodes: Dictionary of nodes. Includes the Controller node. Keys are the node addresses
-    self.name: String name of the node
-    self.address: String Address of Node, must be less than 14 characters (ISY limitation)
-    self.polyConfig: Full JSON config dictionary received from Polyglot for the controller Node
-    self.added: Boolean Confirmed added to ISY as primary node
-    self.config: Dictionary, this node's Config
-
-    Class Methods (not including the Node methods):
-    start(): Once the NodeServer config is received from Polyglot this method is automatically called.
-    addNode(polyinterface.Node, update = False): Adds Node to self.nodes and polyglot/ISY. This is called
-        for you on the controller itself. Update = True overwrites the existing Node data.
-    updateNode(polyinterface.Node): Overwrites the existing node data here and on Polyglot.
-    delNode(address): Deletes a Node from the self.nodes/polyglot and ISY. Address is the Node's Address
-    longPoll(): Runs every longPoll seconds (set initially in the server.json or default 10 seconds)
-    shortPoll(): Runs every shortPoll seconds (set initially in the server.json or default 30 seconds)
-    query(): Queries and reports ALL drivers for ALL nodes to the ISY.
-    getDriver('ST'): gets the current value from Polyglot for driver 'ST' returns a STRING, cast as needed
-    runForever(): Easy way to run forever without maxing your CPU or doing some silly 'time.sleep' nonsense
-                  this joins the underlying queue query thread and just waits for it to terminate
-                  which never happens.
-    """
     def __init__(self, polyglot):
-        """
-        Optional.
-        Super runs all the parent class necessities. You do NOT have
-        to override the __init__ method, but if you do, you MUST call super.
-        """
         super(Controller, self).__init__(polyglot)
         self.name = 'Hubitat'
         self.node_list = []
 
     def start(self):
-        """
-        Optional.
-        Polyglot v2 Interface startup done. Here is where you start your integration.
-        This will run, once the NodeServer connects to Polyglot and gets it's config.
-        In this example I am calling a discovery method. While this is optional,
-        this is where you should start. No need to Super this method, the parent
-        version does nothing.
-        """
         LOGGER.info('Started Hubitat')
         # Remove all existing notices
         self.removeNoticesAll()
@@ -93,49 +31,18 @@ class Controller(polyinterface.Controller):
             self.hubitat_events()
 
     def shortPoll(self):
-        """
-        Optional.
-        This runs every 10 seconds. You would probably update your nodes either here
-        or longPoll. No need to Super this method the parent version does nothing.
-        The timer can be overriden in the server.json.
-        """
         pass
 
     def longPoll(self):
-        """
-        Optional.
-        This runs every 30 seconds. You would probably update your nodes either here
-        or shortPoll. No need to Super this method the parent version does nothing.
-        The timer can be overriden in the server.json.
-        """
         pass
 
     def query(self):
-        """
-        Optional.
-        By default a query to the control node reports the FULL driver set for ALL
-        nodes back to ISY. If you override this method you will need to Super or
-        issue a reportDrivers() to each node manually.
-        """
         for node in self.nodes:
             self.nodes[node].reportDrivers()
 
     def check_params(self):
-        # default_hubitat_uri = 'http://localhost'
-        # hubitat_uri = default_hubitat_uri
-
         default_maker_uri = 'http://<IP_ADDRESS>/apps/api/<APP_ID>/devices/all?access_token=<TOKEN>'
         maker_uri = default_maker_uri
-
-        # if 'hubitat_uri' in self.polyConfig['customParams']:
-        #     hubitat_uri = self.polyConfig['customParams']['hubitat_uri']
-        #     if hubitat_uri != default_hubitat_uri:
-        #         hubitat_st = True
-        #     else:
-        #         hubitat_st = False
-        # else:
-        #     LOGGER.error('Hubitat URI is not defined in configuration')
-        #     hubitat_st = False
 
         if 'maker_uri' in self.polyConfig['customParams']:
             maker_uri = self.polyConfig['customParams']['maker_uri']
@@ -158,12 +65,6 @@ class Controller(polyinterface.Controller):
             return True
 
     def discover(self, *args, **kwargs):
-        """
-        Example
-        Do discovery here. Does not have to be called discovery. Called from example
-        controller start method and from DISCOVER command recieved from ISY as an exmaple.
-        """
-
         r = requests.get(self.polyConfig['customParams']['maker_uri'])
         data = r.json()
 
@@ -215,12 +116,11 @@ class Controller(polyinterface.Controller):
         return st
 
     def hubitat_events(self):
-        # hubitat_uri = self.polyConfig['customParams']['hubitat_uri']
         maker_uri = self.polyConfig['customParams']['maker_uri']
         ws_uri = 'ws://' + maker_uri.split('/')[2] + '/eventsocket'
 
-        LOGGER.info(ws_uri)
-        LOGGER.info(maker_uri)
+        #LOGGER.info(ws_uri)
+        #LOGGER.info(maker_uri)
 
         websocket = WebSocket(ws_uri)
         for event in websocket:
@@ -230,13 +130,12 @@ class Controller(polyinterface.Controller):
                     h_value = event.json['value']
                     h_name = event.json['name']
 
-                    print('----Device Info----')
-                    print(event.json)
-                    print('----Device Info----')
+                    # print('----Device Info----')
+                    # print(event.json)
+                    # print('----Device Info----')
 
                     if _deviceId in self.node_list:
                         m_node = self.nodes[_deviceId]
-                        #print("Hey I own that device!!!")
 
                         if h_name == 'switch':
                             if h_value == 'on':
@@ -291,14 +190,6 @@ class Controller(polyinterface.Controller):
                         else:
                             print('Driver not implemented')
 
-    """
-    Optional.
-    Since the controller is the parent node in ISY, it will actual show up as a node.
-    So it needs to know the drivers and what id it will use. The drivers are
-    the defaults in the parent Class, so you don't need them unless you want to add to
-    them. The ST and GV1 variables are for reporting status through Polyglot to ISY,
-    DO NOT remove them. UOM 2 is boolean.
-    """
     id = 'controller'
     commands = {
         'DISCOVER': discover,
