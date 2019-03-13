@@ -1,0 +1,129 @@
+<nodeDefs>
+    <!-- NODE DEF from 5.0 document http://wiki.universal-devices.com/index.php?title=V50_MAIN -->
+    <!-- controller -->
+    <nodeDef id="controller" nls="ctl">
+        <editors />
+        <sts>
+			<st id="ST" editor="bool" />
+		</sts>
+        <cmds>
+            <sends />
+            <accepts>
+              <cmd id="DISCOVER" />
+              <cmd id="REMOVE_NOTICES_ALL" />
+              <cmd id="UPDATE_PROFILE" />
+            </accepts>
+        </cmds>
+    </nodeDef>
+
+    <nodeDef id="vswitchnode" nls="virtsw">
+        <editors />
+        <sts>
+            <st id="ST" editor="STATUS" />
+        </sts>
+        <cmds>
+            <sends />
+            <accepts>
+                <cmd id="DON" />
+                <cmd id="DOF" />
+            </accepts>
+        </cmds>
+    </nodeDef>
+
+    <nodeDef id="zoozpowerswitch" nls="zoozpsw">
+        <editors />
+        <sts>
+            <st id="ST" editor="STATUS" />
+            <st id="CC" editor="CC" />
+            <st id="CPW" editor="CPW" />
+            <st id="CV" editor="CV" />
+            <st id="TPW" editor="TPW" />
+            <st id="GV0" editor="CURRENT_H" />
+            <st id="GV1" editor="CURRENT_L" />
+            <st id="GV2" editor="POWER_H" />
+            <st id="GV3" editor="POWER_L" />
+            <st id="GV4" editor="VOLTAGE_H" />
+            <st id="GV5" editor="VOLTAGE_L" />
+            <st id="GV6" editor="ENERGY_DURATION" />
+        </sts>
+        <cmds>
+            <sends />
+            <accepts>
+                <cmd id="DON" />
+                <cmd id="DOF" />
+            </accepts>
+        </cmds>
+    </nodeDef>
+
+    <nodeDef id="nycemsnode" nls="nycems">
+        <editors />
+        <sts>
+            <st id="ST" editor="STATUS" />
+            <st id="BATLVL" editor="BATLVL" />
+            <st id="CLITEMP" editor="CLITEMP" />
+            <st id="CLIHUM" editor="CLIHUM" />
+        </sts>
+        <cmds>
+            <sends />
+            <accepts>
+                <!--<cmd id="DON" />-->
+                <!--<cmd id="DOF" />-->
+            </accepts>
+        </cmds>
+    </nodeDef>
+
+    <nodeDef id="zooz4n1sensor" nls="z4n1">
+        <editors />
+        <sts>
+            <st id="ST" editor="STATUS" />
+            <st id="BATLVL" editor="BATLVL" />
+            <st id="CLITEMP" editor="CLITEMP" />
+            <st id="CLIHUM" editor="CLIHUM" />
+            <st id="LUMIN" editor="LUMIN" />
+            <st id="ALARM" editor="ALARM" />
+        </sts>
+        <cmds>
+            <sends />
+            <accepts>
+                <!--<cmd id="DON" />-->
+                <!--<cmd id="DOF" />-->
+            </accepts>
+        </cmds>
+    </nodeDef>
+
+    <nodeDef id="domemotionsensor" nls="domems">
+        <editors />
+        <sts>
+            <st id="ST" editor="STATUS" />
+            <st id="BATLVL" editor="BATLVL" />
+            <st id="LUMIN" editor="LUMIN" />
+        </sts>
+        <cmds>
+            <sends />
+            <accepts>
+                <!--<cmd id="DON" />-->
+                <!--<cmd id="DOF" />-->
+            </accepts>
+        </cmds>
+    </nodeDef>
+
+    <nodeDef id="fibarozw5node" nls="fibarozw5">
+        <editors />
+        <sts>
+            <st id="ST" editor="STATUS" />
+            <st id="BATLVL" editor="BATLVL" />
+            <st id="CLITEMP" editor="CLITEMP" />
+            <st id="LUMIN" editor="LUMIN" />
+            <st id="ALARM" editor="ALARM" />
+            <st id="SPEED" editor="SPEED" />
+        </sts>
+        <cmds>
+            <sends />
+            <accepts>
+                <!--<cmd id="DON" />-->
+                <!--<cmd id="DOF" />-->
+            </accepts>
+        </cmds>
+    </nodeDef>
+
+</nodeDefs>

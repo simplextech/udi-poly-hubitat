@@ -1,0 +1,63 @@
+# controller
+ND-controller-NAME = Hubitat Elevation
+ND-controller-ICON = GenericCtl
+CMD-ctl-DISCOVER-NAME = Re-Discover
+CMD-ctl-UPDATE_PROFILE-NAME = Update Profile
+CMD-ctl-REMOVE_NOTICES_ALL-NAME = Remove Notices
+ST-ctl-ST-NAME = NodeServer Online
+
+# virtualswitch
+ND-vswitchnode-NAME = Virtual Switch
+ND-vswitchnode-ICON = Switch
+ST-virtsw-ST-NAME = Status
+
+# zoozpowerswitch
+ND-zoozpowerswitch-NAME = Zooz Power Switch
+ND-zoozpowerswitch-ICON = Switch
+ST-zoozpsw-ST-NAME = Status
+ST-zoozpsw-CC-NAME = Current (Amps)
+ST-zoozpsw-CPW-NAME = Power (Watts)
+ST-zoozpsw-CV-NAME = Voltage
+ST-zoozpsw-TPW-NAME = Total Power Used (energy)
+ST-zoozpsw-GV0-NAME = Current High
+ST-zoozpsw-GV1-NAME = Current Low
+ST-zoozpsw-GV2-NAME = Power High
+ST-zoozpsw-GV3-NAME = Power Low
+ST-zoozpsw-GV4-NAME = Voltage High
+ST-zoozpsw-GV5-NAME = Voltage Low
+ST-zoozpsw-GV6-NAME = Duration
+
+# nycemsnode
+ND-nycemsnode-NAME = NYCE Motion Sensor
+ND-nycemsnode-ICON = MotionSensor
+ST-nycems-ST-NAME = Status
+ST-nycems-BATLVL-NAME = Battery
+ST-nycems-CLIHUM-NAME = Humidity
+ST-nycems-CLITEMP-NAME = Temperature
+
+# zooz4n1sensor
+ND-zooz4n1sensor-NAME = Zooz 4-in-1 Sensor
+ND-zooz4n1sensor-ICON = MotionSensor
+ST-z4n1-ST-NAME = Status
+ST-z4n1-BATLVL-NAME = Battery
+ST-z4n1-CLIHUM-NAME = Humidity
+ST-z4n1-CLITEMP-NAME = Temperature
+ST-z4n1-LUMIN-NAME = Illuminance
+ST-z4n1-ALARM-NAME = Tamper Alarm
+
+# domemotionsensor
+ND-domemotionsensor-NAME = Dome Motion Sensor
+ND-domemotionsensor-ICON = MotionSensor
+ST-domems-ST-NAME = Status
+ST-domems-BATLVL-NAME = Battery
+ST-domems-LUMIN-NAME = Illuminance
+
+# fibarozw5node
+ND-fibarozw5node-NAME = Fibaro Motion Sensor ZW5
+ND-fibarozw5node-ICON = MotionSensor
+ST-fibarozw5-ST-NAME = Status
+ST-fibarozw5-BATLVL-NAME = Battery
+ST-fibarozw5-CLITEMP-NAME = Temperature
+ST-fibarozw5-LUMIN-NAME = Illuminance
+ST-fibarozw5-ALARM-NAME = Tamper Alarm
+ST-fibarozw5-SPEED-NAME = Acceleration
