@@ -8,10 +8,7 @@ import sys
 import time
 import requests
 from lomond import WebSocket
-
-# Import all of the supported device node-types.  Growing list...
-# Not using a glob '*' import to validate/test node types as introduced for QA/QC
-from node_types import VirtualSwitchNode, NYCEMotionSensorNode, Zooz4n1SensorNode, DomeMotionSensorNode, ZoozPowerSwitchNode, FibaroZW5Node
+import node_types
 
 LOGGER = polyinterface.LOGGER
 
@@ -69,24 +66,26 @@ class Controller(polyinterface.Controller):
         data = r.json()
 
         for dev in data:
-            LOGGER.info(dev)
+            # LOGGER.info(dev)
             _name = dev['name']
             _label = dev['label']
             _type = dev['type']
             _id = dev['id']
 
             if dev['type'] == 'Virtual Switch':
-                self.addNode(VirtualSwitchNode(self, self.address, _id, _label))
+                self.addNode(node_types.VirtualSwitchNode(self, self.address, _id, _label))
+            if dev['type'] == 'Generic Z-Wave Switch':
+                self.addNode(node_types.ZWaveSwitchNode(self, self.address, _id, _label))
             if dev['type'] == 'NYCE Motion Sensor Series':
-                self.addNode(NYCEMotionSensorNode(self, self.address, _id, _label))
+                self.addNode(node_types.NYCEMotionSensorNode(self, self.address, _id, _label))
             if dev['type'] == 'Zooz 4-in-1 Sensor':
-                self.addNode(Zooz4n1SensorNode(self, self.address, _id, _label))
+                self.addNode(node_types.Zooz4n1SensorNode(self, self.address, _id, _label))
             if dev['type'] == 'Dome Motion Sensor':
-                self.addNode(DomeMotionSensorNode(self, self.address, _id, _label))
+                self.addNode(node_types.DomeMotionSensorNode(self, self.address, _id, _label))
             if dev['type'] == 'Zooz Power Switch':
-                self.addNode(ZoozPowerSwitchNode(self, self.address, _id, _label))
+                self.addNode(node_types.ZoozPowerSwitchNode(self, self.address, _id, _label))
             if dev['type'] == 'Fibaro Motion Sensor ZW5':
-                self.addNode(FibaroZW5Node(self, self.address, _id, _label))
+                self.addNode(node_types.FibaroZW5Node(self, self.address, _id, _label))
 
         # Build node list
         # self.node_list = []
