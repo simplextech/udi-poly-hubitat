@@ -26,6 +26,22 @@
             <accepts>
                 <cmd id="DON" />
                 <cmd id="DOF" />
+                <cmd id="QUERY" />
+            </accepts>
+        </cmds>
+    </nodeDef>
+
+    <nodeDef id="zwswnode" nls="zwsw">
+        <editors />
+        <sts>
+            <st id="ST" editor="STATUS" />
+        </sts>
+        <cmds>
+            <sends />
+            <accepts>
+                <cmd id="DON" />
+                <cmd id="DOF" />
+                <cmd id="QUERY" />
             </accepts>
         </cmds>
     </nodeDef>
@@ -51,6 +67,7 @@
             <accepts>
                 <cmd id="DON" />
                 <cmd id="DOF" />
+                <cmd id="QUERY" />
             </accepts>
         </cmds>
     </nodeDef>

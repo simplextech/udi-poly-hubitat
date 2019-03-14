@@ -11,6 +11,11 @@ ND-vswitchnode-NAME = Virtual Switch
 ND-vswitchnode-ICON = Switch
 ST-virtsw-ST-NAME = Status
 
+# Generic Z-Wave Switch Node
+ND-zwswnode-NAME = Virtual Switch
+ND-zwswnode-ICON = Switch
+ST-zwsw-ST-NAME = Status
+
 # zoozpowerswitch
 ND-zoozpowerswitch-NAME = Zooz Power Switch
 ND-zoozpowerswitch-ICON = Switch

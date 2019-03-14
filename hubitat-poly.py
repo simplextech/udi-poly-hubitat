@@ -129,9 +129,9 @@ class Controller(polyinterface.Controller):
                     h_value = event.json['value']
                     h_name = event.json['name']
 
-                    # print('----Device Info----')
-                    # print(event.json)
-                    # print('----Device Info----')
+                    print('----Device Info----')
+                    print(event.json)
+                    print('----Device Info----')
 
                     if _deviceId in self.node_list:
                         m_node = self.nodes[_deviceId]
@@ -185,7 +185,8 @@ class Controller(polyinterface.Controller):
                         elif h_name == 'voltageL':
                             m_node.setDriver('GV5', h_value)
                         elif h_name == 'energyDuration':
-                            m_node.setDriver('GV6', h_value)
+                            _h_value = h_value.split(' ')[0]
+                            m_node.setDriver('GV6', _h_value)
                         else:
                             print('Driver not implemented')
 

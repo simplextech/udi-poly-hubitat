@@ -23,33 +23,28 @@ class HubitatBase(polyinterface.Node):
         _raw_uri = self.maker_uri.split('?')
         _raw_http = _raw_uri[0].replace('all', device_id)
 
-        print('debug------------------')
+        # print('debug------------------')
 
-        print(self.maker_uri)
-        print(self.name)
-        print(cmd)
-        print(device_id)
+        # print(command.keys())
+        # print(self.maker_uri)
+        # print(self.name)
+        # print(cmd)
+        # print(device_id)
 
         if cmd in ['DON', 'DFON']:
             h_cmd = 'on'
             cmd_uri = _raw_http + '/' + h_cmd + '?' + _raw_uri[1]
             # val = command.get('value')
-            print(cmd_uri)
+            # print(cmd_uri)
 
         if cmd in ['DOF', 'DFOF']:
             h_cmd = 'off'
             cmd_uri = _raw_http + '/' + h_cmd + '?' + _raw_uri[1]
             # val = command.get('value')
-            print(cmd_uri)
-
-        # if cmd == 'DON':
-        #
-        #     for k in command.keys():
-        #         print('Key: ' + k)
-        #
+            # print(cmd_uri)
 
         r = requests.get(cmd_uri)
-        print(r.status_code)
+        # print(r.status_code)
 
         if h_cmd == 'on':
             r = requests.get(cmd_uri)
@@ -60,51 +55,53 @@ class HubitatBase(polyinterface.Node):
             if r.status_code == 200:
                 self.setDriver('ST', 0)
 
-        print('debug------------------')
+        # print('debug------------------')
+
+    def hubitatRefresh(self):
+        device_id = self.address
+        _raw_uri = self.maker_uri.split('?')
+        _raw_http = _raw_uri[0].replace('all', device_id)
+
+        h_cmd = 'refresh'
+        cmd_uri = _raw_http + '/' + h_cmd + '?' + _raw_uri[1]
+        r = requests.get(cmd_uri)
+        # print(r.status_code)
 
 
 class VirtualSwitchNode(HubitatBase):
-
     def __init__(self, controller, primary, address, name):
         super().__init__(controller, primary, address, name)
 
-    # def start(self):
-    #     #self.setDriver('ST', 0)
-    #     pass
-
-    # def setOn(self, command):
-    #     self.setDriver('ST', 100)
-    #
-    # def setOff(self, command):
-    #     self.setDriver('ST', 0)
-    #
-    # def query(self):
-    #     self.reportDrivers()
+    def query(self):
+        HubitatBase.hubitatRefresh(self)
 
     drivers = [{'driver': 'ST', 'value': 0, 'uom': 78}]
     id = 'vswitchnode'
     commands = {
-        'DON': HubitatBase.hubitatCtl, 'DOF': HubitatBase.hubitatCtl
+        'DON': HubitatBase.hubitatCtl, 'DOF': HubitatBase.hubitatCtl, 'QUERY': query
+    }
+
+
+class ZWaveSwitchNode(HubitatBase):
+    def __init__(self, controller, primary, address, name):
+        super().__init__(controller, primary, address, name)
+
+    def query(self):
+        HubitatBase.hubitatRefresh(self)
+
+    drivers = [{'driver': 'ST', 'value': 0, 'uom': 78}]
+    id = 'zwswnode'
+    commands = {
+        'DON': HubitatBase.hubitatCtl, 'DOF': HubitatBase.hubitatCtl, 'QUERY': query
     }
 
 
 class ZoozPowerSwitchNode(HubitatBase):
-
     def __init__(self, controller, primary, address, name):
         super().__init__(controller, primary, address, name)
 
-    # def start(self):
-    #     self.setDriver('ST', 0)
-    #     pass
-    #
-    # def setOn(self, command):
-    #     self.setDriver('ST', 100)
-    #
-    # def setOff(self, command):
-    #     self.setDriver('ST', 0)
-    #
-    # def query(self):
-    #     self.reportDrivers()
+    def query(self):
+        HubitatBase.hubitatRefresh(self)
 
     drivers = [
         {'driver': 'ST', 'value': 0, 'uom': 78},  # Status
@@ -122,7 +119,7 @@ class ZoozPowerSwitchNode(HubitatBase):
     ]
     id = 'zoozpowerswitch'
     commands = {
-        'DON': HubitatBase.hubitatCtl, 'DOF': HubitatBase.hubitatCtl
+        'DON': HubitatBase.hubitatCtl, 'DOF': HubitatBase.hubitatCtl, 'QUERY': query
     }
 
 
