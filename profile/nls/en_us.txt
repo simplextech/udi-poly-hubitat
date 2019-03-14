@@ -66,3 +66,13 @@ ST-fibarozw5-CLITEMP-NAME = Temperature
 ST-fibarozw5-LUMIN-NAME = Illuminance
 ST-fibarozw5-ALARM-NAME = Tamper Alarm
 ST-fibarozw5-SPEED-NAME = Acceleration
+
+# Lutron Pico
+ND-piconode-NAME = Virtual Switch
+ND-piconode-ICON = Switch
+ST-pico-ST-NAME = Status
+ST-pico-GV0-NAME = Button 1
+ST-pico-GV1-NAME = Button 2
+ST-pico-GV2-NAME = Button 3
+ST-pico-GV3-NAME = Button 4
+ST-pico-GV4-NAME = Button 5

@@ -143,4 +143,24 @@
         </cmds>
     </nodeDef>
 
+    <nodeDef id="piconode" nls="pico">
+        <editors />
+        <sts>
+            <st id="ST" editor="bool" hide="True" />
+            <st id="GV0" editor="PICO_BUTTON" />
+            <st id="GV1" editor="PICO_BUTTON" />
+            <st id="GV2" editor="PICO_BUTTON" />
+            <st id="GV3" editor="PICO_BUTTON" />
+            <st id="GV4" editor="PICO_BUTTON" />
+        </sts>
+        <cmds>
+            <sends />
+            <accepts>
+                <!--<cmd id="DON" />-->
+                <!--<cmd id="DOF" />-->
+                <!--<cmd id="BRT" />-->
+                <!--<cmd id="DIM" />-->
+            </accepts>
+        </cmds>
+    </nodeDef>
 </nodeDefs>

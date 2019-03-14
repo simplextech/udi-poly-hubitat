@@ -86,6 +86,8 @@ class Controller(polyinterface.Controller):
                 self.addNode(node_types.ZoozPowerSwitchNode(self, self.address, _id, _label))
             if dev['type'] == 'Fibaro Motion Sensor ZW5':
                 self.addNode(node_types.FibaroZW5Node(self, self.address, _id, _label))
+            if dev['type'] == 'Lutron Pico':
+                self.addNode(node_types.LutronPicoNode(self, self.address, _id, _label))
 
         # Build node list
         # self.node_list = []
@@ -187,6 +189,18 @@ class Controller(polyinterface.Controller):
                         elif h_name == 'energyDuration':
                             _h_value = h_value.split(' ')[0]
                             m_node.setDriver('GV6', _h_value)
+                            # Lutron Pico buttons
+                        elif h_name == 'pushed':
+                            if h_value == '1':
+                                m_node.setDriver('GV0', h_value)
+                            elif h_value == '2':
+                                m_node.setDriver('GV1', h_value)
+                            elif h_value == '3':
+                                m_node.setDriver('GV2', h_value)
+                            elif h_value == '4':
+                                m_node.setDriver('GV3', h_value)
+                            elif h_value == '5':
+                                m_node.setDriver('GV4', h_value)
                         else:
                             print('Driver not implemented')
 

@@ -82,6 +82,26 @@ class VirtualSwitchNode(HubitatBase):
     }
 
 
+class LutronPicoNode(HubitatBase):
+    def __init__(self, controller, primary, address, name):
+        super().__init__(controller, primary, address, name)
+
+    # def query(self):
+    #     HubitatBase.hubitatRefresh(self)
+
+    drivers = [
+        {'driver': 'ST', 'value': 0, 'uom': 78},
+        {'driver': 'GV0', 'value': 0, 'uom': 2},
+        {'driver': 'GV1', 'value': 0, 'uom': 2},
+        {'driver': 'GV2', 'value': 0, 'uom': 2},
+        {'driver': 'GV3', 'value': 0, 'uom': 2},
+        {'driver': 'GV4', 'value': 0, 'uom': 2}
+        ]
+    id = 'piconode'
+    commands = {
+        # 'DON': HubitatBase.hubitatCtl, 'DOF': HubitatBase.hubitatCtl, 'QUERY': query
+    }
+
 class ZWaveSwitchNode(HubitatBase):
     def __init__(self, controller, primary, address, name):
         super().__init__(controller, primary, address, name)

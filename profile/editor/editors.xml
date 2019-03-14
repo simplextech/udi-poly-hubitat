@@ -76,4 +76,8 @@
         <range uom="45" min="0" max="1000" step="1" prec="3" />
     </editor>
 
+    <editor id="PICO_BUTTON">
+        <range uom="2" subset="0,1" />
+    </editor>
+
 </editors>
