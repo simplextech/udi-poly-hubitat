@@ -6,15 +6,35 @@ CMD-ctl-UPDATE_PROFILE-NAME = Update Profile
 CMD-ctl-REMOVE_NOTICES_ALL-NAME = Remove Notices
 ST-ctl-ST-NAME = NodeServer Online
 
+
+#Generic for all Types
+CMD-DON-NAME = On
+CMD-DOF-NAME = Off
+CMD-DFON-NAME = Fast On
+CMD-DFOF-NAME = Fast Off
+CMD-BRT-NAME = Brighten
+CMD-DIM-NAME = Dim
+CMD-FDUP-NAME = Fade Up
+CMD-FDDOWN-NAME = Fade Down
+CMD-FDSTOP-NAME = Fade Stop
+CMD-QUERY-NAME = Query
+CMD-SETLVL-NAME = Set Level
+
 # virtualswitch
 ND-vswitchnode-NAME = Virtual Switch
 ND-vswitchnode-ICON = Switch
 ST-virtsw-ST-NAME = Status
 
 # Generic Z-Wave Switch Node
-ND-zwswnode-NAME = Virtual Switch
+ND-zwswnode-NAME = Z-Wave Switch
 ND-zwswnode-ICON = Switch
 ST-zwsw-ST-NAME = Status
+
+# Generic Z-Wave Dimmer Node
+ND-zwdimnode-NAME = Z-Wave Dimmer
+ND-zwdimnode-ICON = Switch
+ST-zwdim-ST-NAME = Status
+ST-zwdim-OL-NAME = On Level
 
 # zoozpowerswitch
 ND-zoozpowerswitch-NAME = Zooz Power Switch
@@ -68,11 +88,22 @@ ST-fibarozw5-ALARM-NAME = Tamper Alarm
 ST-fibarozw5-SPEED-NAME = Acceleration
 
 # Lutron Pico
-ND-piconode-NAME = Virtual Switch
+ND-piconode-NAME = Pico Remote
 ND-piconode-ICON = Switch
 ST-pico-ST-NAME = Status
-ST-pico-GV0-NAME = Button 1
-ST-pico-GV1-NAME = Button 2
-ST-pico-GV2-NAME = Button 3
-ST-pico-GV3-NAME = Button 4
-ST-pico-GV4-NAME = Button 5
+ST-pico-GV7-NAME = Button
+
+# Lutron Fast Pico
+ND-fastpiconode-NAME = Pico Remote
+ND-fastpiconode-ICON = Switch
+ST-fastpico-ST-NAME = Status
+ST-fastpico-GV7-NAME = Pushed
+ST-fastpico-GV8-NAME = Released
+
+# Lutron Pico Buttons
+PICO_BUTTON-0 = N/A
+PICO_BUTTON-1 = 1
+PICO_BUTTON-2 = 2
+PICO_BUTTON-3 = 3
+PICO_BUTTON-4 = 4
+PICO_BUTTON-5 = 5

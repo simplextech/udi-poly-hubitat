@@ -76,6 +76,8 @@ class Controller(polyinterface.Controller):
                 self.addNode(node_types.VirtualSwitchNode(self, self.address, _id, _label))
             if dev['type'] == 'Generic Z-Wave Switch':
                 self.addNode(node_types.ZWaveSwitchNode(self, self.address, _id, _label))
+            if dev['type'] == 'Generic Z-Wave Dimmer':
+                self.addNode(node_types.ZWaveDimmerNode(self, self.address, _id, _label))
             if dev['type'] == 'NYCE Motion Sensor Series':
                 self.addNode(node_types.NYCEMotionSensorNode(self, self.address, _id, _label))
             if dev['type'] == 'Zooz 4-in-1 Sensor':
@@ -88,6 +90,8 @@ class Controller(polyinterface.Controller):
                 self.addNode(node_types.FibaroZW5Node(self, self.address, _id, _label))
             if dev['type'] == 'Lutron Pico':
                 self.addNode(node_types.LutronPicoNode(self, self.address, _id, _label))
+            if dev['type'] == 'Lutron Fast Pico':
+                self.addNode(node_types.LutronFastPicoNode(self, self.address, _id, _label))
 
         # Build node list
         # self.node_list = []
@@ -141,13 +145,19 @@ class Controller(polyinterface.Controller):
                         if h_name == 'switch':
                             if h_value == 'on':
                                 m_node.setDriver('ST', 100)
+                                m_node.reportCmd('DON', 2)
                             elif h_value == 'off':
                                 m_node.setDriver('ST', 0)
+                                m_node.reportCmd('DOF', 2)
+                        elif h_name == 'level':
+                            m_node.setDriver('OL', h_value)
                         elif h_name == 'motion':
                             if h_value == 'active':
                                 m_node.setDriver('ST', 100)
+                                m_node.reportCmd('DON', 2)
                             elif h_value == 'inactive':
                                 m_node.setDriver('ST', 0)
+                                m_node.reportCmd('DOF', 2)
                         elif h_name == 'tamper':
                             if h_value == 'detected':
                                 m_node.setDriver('ALARM', 1)
@@ -192,15 +202,26 @@ class Controller(polyinterface.Controller):
                             # Lutron Pico buttons
                         elif h_name == 'pushed':
                             if h_value == '1':
-                                m_node.setDriver('GV0', h_value)
+                                m_node.setDriver('GV7', h_value)
                             elif h_value == '2':
-                                m_node.setDriver('GV1', h_value)
+                                m_node.setDriver('GV7', h_value)
                             elif h_value == '3':
-                                m_node.setDriver('GV2', h_value)
+                                m_node.setDriver('GV7', h_value)
                             elif h_value == '4':
-                                m_node.setDriver('GV3', h_value)
+                                m_node.setDriver('GV7', h_value)
                             elif h_value == '5':
-                                m_node.setDriver('GV4', h_value)
+                                m_node.setDriver('GV7', h_value)
+                        elif h_name == 'released':
+                            if h_value == '1':
+                                m_node.setDriver('GV8', h_value)
+                            elif h_value == '2':
+                                m_node.setDriver('GV8', h_value)
+                            elif h_value == '3':
+                                m_node.setDriver('GV8', h_value)
+                            elif h_value == '4':
+                                m_node.setDriver('GV8', h_value)
+                            elif h_value == '5':
+                                m_node.setDriver('GV8', h_value)
                         else:
                             print('Driver not implemented')
 

@@ -8,6 +8,10 @@
         <range uom="78" subset="0,100" />
     </editor>
 
+    <editor id="OL">
+        <range uom="51" min="0" max="100" step="1" prec="0" />
+    </editor>
+
     <editor id="BATLVL">
         <range uom="51" subset="0,100" />
     </editor>
@@ -77,7 +81,7 @@
     </editor>
 
     <editor id="PICO_BUTTON">
-        <range uom="2" subset="0,1" />
+        <range uom="25" subset="0-5" nls="PICO_BUTTON" />
     </editor>
 
 </editors>

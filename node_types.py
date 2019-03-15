@@ -19,41 +19,46 @@ class HubitatBase(polyinterface.Node):
     def hubitatCtl(self, command):
         h_cmd = None
         cmd = command.get('cmd')
+        val = command.get('value')
         device_id = command.get('address')
         _raw_uri = self.maker_uri.split('?')
         _raw_http = _raw_uri[0].replace('all', device_id)
 
         # print('debug------------------')
-
-        # print(command.keys())
-        # print(self.maker_uri)
-        # print(self.name)
-        # print(cmd)
-        # print(device_id)
+        print(command.keys())
+        print(self.maker_uri)
+        print(self.name)
+        print(cmd)
+        print(val)
+        print(device_id)
 
         if cmd in ['DON', 'DFON']:
             h_cmd = 'on'
             cmd_uri = _raw_http + '/' + h_cmd + '?' + _raw_uri[1]
+            requests.get(cmd_uri)
             # val = command.get('value')
             # print(cmd_uri)
-
-        if cmd in ['DOF', 'DFOF']:
+        elif cmd in ['DOF', 'DFOF']:
             h_cmd = 'off'
             cmd_uri = _raw_http + '/' + h_cmd + '?' + _raw_uri[1]
+            requests.get(cmd_uri)
             # val = command.get('value')
             # print(cmd_uri)
+        elif cmd == 'SETLVL':
+            h_cmd = 'setLevel'
+            cmd_uri = _raw_http + '/' + h_cmd + '/' + val + '?' + _raw_uri[1]
+            requests.get(cmd_uri)
 
-        r = requests.get(cmd_uri)
         # print(r.status_code)
 
-        if h_cmd == 'on':
-            r = requests.get(cmd_uri)
-            if r.status_code == 200:
-                self.setDriver('ST', 100)
-        elif h_cmd == 'off':
-            r = requests.get(cmd_uri)
-            if r.status_code == 200:
-                self.setDriver('ST', 0)
+        # if h_cmd == 'on':
+        #     r = requests.get(cmd_uri)
+        #     if r.status_code == 200:
+        #         self.setDriver('ST', 100)
+        # elif h_cmd == 'off':
+        #     r = requests.get(cmd_uri)
+        #     if r.status_code == 200:
+        #         self.setDriver('ST', 0)
 
         # print('debug------------------')
 
@@ -64,8 +69,7 @@ class HubitatBase(polyinterface.Node):
 
         h_cmd = 'refresh'
         cmd_uri = _raw_http + '/' + h_cmd + '?' + _raw_uri[1]
-        r = requests.get(cmd_uri)
-        # print(r.status_code)
+        requests.get(cmd_uri)
 
 
 class VirtualSwitchNode(HubitatBase):
@@ -86,25 +90,69 @@ class LutronPicoNode(HubitatBase):
     def __init__(self, controller, primary, address, name):
         super().__init__(controller, primary, address, name)
 
-    # def query(self):
-    #     HubitatBase.hubitatRefresh(self)
+    def start(self):
+        pass
+    #     self.setDriver('ST', 0)
+
+    def setOn(self, command):
+        self.setDriver('ST', 100)
+
+    def setOff(self, command):
+        self.setDriver('ST', 0)
+
+    def query(self):
+        self.reportDrivers()
 
     drivers = [
-        {'driver': 'ST', 'value': 0, 'uom': 78},
-        {'driver': 'GV0', 'value': 0, 'uom': 2},
-        {'driver': 'GV1', 'value': 0, 'uom': 2},
-        {'driver': 'GV2', 'value': 0, 'uom': 2},
-        {'driver': 'GV3', 'value': 0, 'uom': 2},
-        {'driver': 'GV4', 'value': 0, 'uom': 2}
+        {'driver': 'ST', 'value': 0, 'uom': 2},
+        {'driver': 'GV7', 'value': 0, 'uom': 25},
         ]
     id = 'piconode'
     commands = {
         # 'DON': HubitatBase.hubitatCtl, 'DOF': HubitatBase.hubitatCtl, 'QUERY': query
     }
 
+
+class LutronFastPicoNode(HubitatBase):
+    def __init__(self, controller, primary, address, name):
+        super().__init__(controller, primary, address, name)
+
+    def start(self):
+        pass
+
+    def setOn(self, command):
+        self.setDriver('ST', 100)
+
+    def setOff(self, command):
+        self.setDriver('ST', 0)
+
+    def query(self):
+        self.reportDrivers()
+
+    drivers = [
+        {'driver': 'ST', 'value': 0, 'uom': 2},
+        {'driver': 'GV7', 'value': 0, 'uom': 25},
+        {'driver': 'GV8', 'value': 0, 'uom': 25}
+    ]
+    id = 'fastpiconode'
+    commands = {
+        # 'DON': HubitatBase.hubitatCtl, 'DOF': HubitatBase.hubitatCtl, 'QUERY': query
+    }
+
+
 class ZWaveSwitchNode(HubitatBase):
     def __init__(self, controller, primary, address, name):
         super().__init__(controller, primary, address, name)
+
+    def start(self):
+        pass
+    #     self.setDriver('ST', 0)
+
+    def setOn(self, command):
+        self.setDriver('ST', 100)
+
+    def setOff(self, command):
+        self.setDriver('ST', 0)
 
     def query(self):
         HubitatBase.hubitatRefresh(self)
@@ -113,6 +161,34 @@ class ZWaveSwitchNode(HubitatBase):
     id = 'zwswnode'
     commands = {
         'DON': HubitatBase.hubitatCtl, 'DOF': HubitatBase.hubitatCtl, 'QUERY': query
+    }
+
+
+class ZWaveDimmerNode(HubitatBase):
+    def __init__(self, controller, primary, address, name):
+        super().__init__(controller, primary, address, name)
+
+    def start(self):
+        pass
+    #     self.setDriver('ST', 0)
+
+    def setOn(self, command):
+        self.setDriver('ST', 100)
+
+    def setOff(self, command):
+        self.setDriver('ST', 0)
+
+    def query(self):
+        HubitatBase.hubitatRefresh(self)
+
+    drivers = [
+        {'driver': 'ST', 'value': 0, 'uom': 78},
+        {'driver': 'OL', 'value': 0, 'uom': 51}
+    ]
+    id = 'zwdimnode'
+    commands = {
+        'DON': HubitatBase.hubitatCtl, 'DOF': HubitatBase.hubitatCtl, 'QUERY': query,
+        'SETLVL': HubitatBase.hubitatCtl
     }
 
 
@@ -148,18 +224,18 @@ class NYCEMotionSensorNode(polyinterface.Node):
     def __init__(self, controller, primary, address, name):
         super(NYCEMotionSensorNode, self).__init__(controller, primary, address, name)
 
-    # def start(self):
+    def start(self):
+        pass
     #     self.setDriver('ST', 0)
-    #     pass
-    #
-    # def setOn(self, command):
-    #     self.setDriver('ST', 100)
-    #
-    # def setOff(self, command):
-    #     self.setDriver('ST', 0)
-    #
-    # def query(self):
-    #     self.reportDrivers()
+
+    def setOn(self, command):
+        self.setDriver('ST', 100)
+
+    def setOff(self, command):
+        self.setDriver('ST', 0)
+
+    def query(self):
+        self.reportDrivers()
 
     drivers = [
         {'driver': 'ST', 'value': 0, 'uom': 78},
@@ -169,7 +245,7 @@ class NYCEMotionSensorNode(polyinterface.Node):
     ]
     id = 'nycemsnode'
     commands = {
-        # 'DON': setOn, 'DOF': setOff
+        'DON': setOn, 'DOF': setOff
     }
 
 
