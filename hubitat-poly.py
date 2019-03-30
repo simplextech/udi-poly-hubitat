@@ -139,7 +139,6 @@ class Controller(polyinterface.Controller):
 
                     print('----Device Info----')
                     print(event.json)
-                    print('----Device Info----')
 
                     if _deviceId in self.node_list:
                         m_node = self.nodes[_deviceId]
