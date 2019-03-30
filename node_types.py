@@ -280,6 +280,35 @@ class Zooz4n1SensorNode(polyinterface.Node):
         # 'DON': setOn, 'DOF': setOff
     }
 
+class HueMotionSensorNode(polyinterface.Node):
+
+    def __init__(self, controller, primary, address, name):
+        super(HueMotionSensorNode, self).__init__(controller, primary, address, name)
+
+    # def start(self):
+    #     self.setDriver('ST', 0)
+    #     pass
+    #
+    # def setOn(self, command):
+    #     self.setDriver('ST', 100)
+    #
+    # def setOff(self, command):
+    #     self.setDriver('ST', 0)
+    #
+    # def query(self):
+    #     self.reportDrivers()
+
+    drivers = [
+        {'driver': 'ST', 'value': 0, 'uom': 78},
+        {'driver': 'BATLVL', 'value': 0, 'uom': 51},
+        {'driver': 'CLITEMP', 'value': 0, 'uom': 17},
+        {'driver': 'LUMIN', 'value': 0, 'uom': 36}
+    ]
+    id = 'huemotion'
+    commands = {
+        # 'DON': setOn, 'DOF': setOff
+    }
+
 
 class DomeMotionSensorNode(polyinterface.Node):
 

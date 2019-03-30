@@ -70,6 +70,14 @@ ST-z4n1-CLITEMP-NAME = Temperature
 ST-z4n1-LUMIN-NAME = Illuminance
 ST-z4n1-ALARM-NAME = Tamper Alarm
 
+# huemotionsensor
+ND-huemotion-NAME = Hue Motion Sensor
+ND-huemotion-ICON = MotionSensor
+ST-huems-ST-NAME = Status
+ST-huems-BATLVL-NAME = Battery
+ST-huems-CLITEMP-NAME = Temperature
+ST-huems-LUMIN-NAME = Illuminance
+
 # domemotionsensor
 ND-domemotionsensor-NAME = Dome Motion Sensor
 ND-domemotionsensor-ICON = MotionSensor

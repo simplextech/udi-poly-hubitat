@@ -138,6 +138,23 @@
         </cmds>
     </nodeDef>
 
+    <nodeDef id="huemotion" nls="huems">
+        <editors />
+        <sts>
+            <st id="ST" editor="STATUS" />
+            <st id="BATLVL" editor="BATLVL" />
+            <st id="CLITEMP" editor="CLITEMP" />
+            <st id="LUMIN" editor="LUMIN" />
+        </sts>
+        <cmds>
+            <sends />
+            <accepts>
+                <!--<cmd id="DON" />-->
+                <!--<cmd id="DOF" />-->
+            </accepts>
+        </cmds>
+    </nodeDef>
+
     <nodeDef id="domemotionsensor" nls="domems">
         <editors />
         <sts>
