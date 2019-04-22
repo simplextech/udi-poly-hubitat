@@ -164,6 +164,33 @@ class ZWaveSwitchNode(HubitatBase):
     }
 
 
+class ZigbeeBulbNode(HubitatBase):
+    def __init__(self, controller, primary, address, name):
+        super().__init__(controller, primary, address, name)
+
+    def start(self):
+        pass
+    #     self.setDriver('ST', 0)
+
+    def setOn(self, command):
+        self.setDriver('ST', 100)
+
+    def setOff(self, command):
+        self.setDriver('ST', 0)
+
+    def query(self):
+        HubitatBase.hubitatRefresh(self)
+
+    drivers = [
+        {'driver': 'ST', 'value': 0, 'uom': 78},
+        {'driver': 'OL', 'value': 0, 'uom': 51}
+
+    id = 'zbbulbnode'
+    commands = {
+        'DON': HubitatBase.hubitatCtl, 'DOF': HubitatBase.hubitatCtl, 'QUERY': query
+    }
+
+
 class ZWaveDimmerNode(HubitatBase):
     def __init__(self, controller, primary, address, name):
         super().__init__(controller, primary, address, name)
@@ -279,6 +306,7 @@ class Zooz4n1SensorNode(polyinterface.Node):
     commands = {
         # 'DON': setOn, 'DOF': setOff
     }
+
 
 class HueMotionSensorNode(polyinterface.Node):
 

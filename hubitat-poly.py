@@ -78,6 +78,8 @@ class Controller(polyinterface.Controller):
                 self.addNode(node_types.ZWaveSwitchNode(self, self.address, _id, _label))
             if dev['type'] == 'Generic Z-Wave Dimmer':
                 self.addNode(node_types.ZWaveDimmerNode(self, self.address, _id, _label))
+            if dev['type'] == 'Generic Zigbee Bulb':
+                self.addNode(node_types.ZigbeeBulbNode(self, self.address, _id, _label))
             if dev['type'] == 'NYCE Motion Sensor Series':
                 self.addNode(node_types.NYCEMotionSensorNode(self, self.address, _id, _label))
             if dev['type'] == 'Zooz 4-in-1 Sensor':

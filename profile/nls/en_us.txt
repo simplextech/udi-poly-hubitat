@@ -36,6 +36,12 @@ ND-zwdimnode-ICON = Switch
 ST-zwdim-ST-NAME = Status
 ST-zwdim-OL-NAME = On Level
 
+# Generic ZigBeee Bulb Node
+ND-zbbulbnode-NAME = ZigBee Bulb
+ND-zbbulbnode-ICON = Lamp
+ST-zbbulb-ST-NAME = Status
+ST-zbbulb-OL-NAME = On Level
+
 # zoozpowerswitch
 ND-zoozpowerswitch-NAME = Zooz Power Switch
 ND-zoozpowerswitch-ICON = Switch
