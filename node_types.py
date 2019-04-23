@@ -170,7 +170,6 @@ class ZigbeeBulbNode(HubitatBase):
 
     def start(self):
         pass
-    #     self.setDriver('ST', 0)
 
     def setOn(self, command):
         self.setDriver('ST', 100)
@@ -184,10 +183,11 @@ class ZigbeeBulbNode(HubitatBase):
     drivers = [
         {'driver': 'ST', 'value': 0, 'uom': 78},
         {'driver': 'OL', 'value': 0, 'uom': 51}
-
+    ]
     id = 'zbbulbnode'
     commands = {
-        'DON': HubitatBase.hubitatCtl, 'DOF': HubitatBase.hubitatCtl, 'QUERY': query
+        'DON': HubitatBase.hubitatCtl, 'DOF': HubitatBase.hubitatCtl, 'QUERY': query,
+        'SETLVL': HubitatBase.hubitatCtl
     }
 
 
