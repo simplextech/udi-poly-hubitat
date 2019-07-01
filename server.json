@@ -4,7 +4,6 @@
     "type": "python3",
     "executable": "hubitat-poly.py",
     "install": "install.sh",
-    "install_cloud": "install_cloud.sh",
     "description": "Hubitat Elevation integration",
     "notice": "You've been warned",
     "shortPoll": "120",
@@ -13,7 +12,7 @@
         {
             "title": "Hubitat: a NodeServer for integrating the Hubitat Elevation hub",
             "author": "Simplex Technology",
-            "version": "0.1.15",
+            "version": "0.1.16",
             "date": "March 12, 2019",
             "source": "github",
             "license": "LICENSE"
