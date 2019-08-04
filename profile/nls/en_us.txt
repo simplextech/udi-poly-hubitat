@@ -6,7 +6,6 @@ CMD-ctl-UPDATE_PROFILE-NAME = Update Profile
 CMD-ctl-REMOVE_NOTICES_ALL-NAME = Remove Notices
 ST-ctl-ST-NAME = NodeServer Online
 
-
 #Generic for all Types
 CMD-DON-NAME = On
 CMD-DOF-NAME = Off
@@ -23,23 +22,7 @@ CMD-SET_HUE-NAME = Set Hue
 CMD-SET_SAT-NAME = Set Saturation
 CMD-SET_KELVIN-NAME = Set Color Temperature
 
-
-# virtualswitch
-ND-vswitchnode-NAME = Virtual Switch
-ND-vswitchnode-ICON = Switch
-ST-virtsw-ST-NAME = Status
-
-# Generic Z-Wave Switch Node
-ND-zwswnode-NAME = Z-Wave Switch
-ND-zwswnode-ICON = Switch
-ST-zwsw-ST-NAME = Status
-
-# Generic Z-Wave Dimmer Node
-ND-zwdimnode-NAME = Z-Wave Dimmer
-ND-zwdimnode-ICON = Switch
-ST-zwdim-ST-NAME = Status
-ST-zwdim-OL-NAME = On Level
-
+#### New Generalized Entries
 # Generic Bulb Node
 ND-STD_LAMP-NAME = Standard Light
 ND-STD_LAMP-ICON = Lamp
@@ -55,6 +38,48 @@ ST-ZCL-GV3-NAME = Hue
 ST-ZCL-GV4-NAME = Saturation
 ST-ZCL-GV5-NAME = Color Mode
 ST-ZCL-GV6-NAME = Color Temperature
+
+# Energy Meter Outlet
+ND-ENERGY_OUTLET-NAME = Energy Meter Outlet
+ND-ENERGY_OUTLET-ICON = Switch
+ST-EOUTLET-ST-NAME = Status
+ST-EOUTLET-CC-NAME = Current (Amps)
+ST-EOUTLET-CPW-NAME = Power (Watts)
+ST-EOUTLET-CV-NAME = Voltage
+ST-EOUTLET-TPW-NAME = Total Power Used (energy)
+ST-EOUTLET-GV0-NAME = Current High
+ST-EOUTLET-GV1-NAME = Current Low
+ST-EOUTLET-GV2-NAME = Power High
+ST-EOUTLET-GV3-NAME = Power Low
+ST-EOUTLET-GV4-NAME = Voltage High
+ST-EOUTLET-GV5-NAME = Voltage Low
+ST-EOUTLET-GV6-NAME = Duration
+
+# Generic Outlet
+ND-OUTLET-NAME = Generic Outlet
+ND-OUTLET-ICON = Switch
+ST-OUTLET-ST-NAME = Status
+
+
+
+
+
+#### Original OLD Entries
+# virtualswitch
+ND-vswitchnode-NAME = Virtual Switch
+ND-vswitchnode-ICON = Switch
+ST-virtsw-ST-NAME = Status
+
+# Generic Z-Wave Switch Node
+ND-zwswnode-NAME = Z-Wave Switch
+ND-zwswnode-ICON = Switch
+ST-zwsw-ST-NAME = Status
+
+# Generic Z-Wave Dimmer Node
+ND-zwdimnode-NAME = Z-Wave Dimmer
+ND-zwdimnode-ICON = Switch
+ST-zwdim-ST-NAME = Status
+ST-zwdim-OL-NAME = On Level
 
 # zoozpowerswitch
 ND-zoozpowerswitch-NAME = Zooz Power Switch

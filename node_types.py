@@ -83,7 +83,137 @@ class HubitatBase(polyinterface.Node):
         cmd_uri = _raw_http + '/' + h_cmd + '?' + _raw_uri[1]
         requests.get(cmd_uri)
 
+'''New Class definitions for gerneralization'''
+class StdLampNode(HubitatBase):
+    def __init__(self, controller, primary, address, name):
+        super().__init__(controller, primary, address, name)
 
+    def start(self):
+        pass
+
+    def setOn(self, command):
+        self.setDriver('ST', 100)
+
+    def setOff(self, command):
+        self.setDriver('ST', 0)
+
+    def query(self):
+        HubitatBase.hubitatRefresh(self)
+
+    drivers = [
+        {'driver': 'ST', 'value': 0, 'uom': 78},
+        {'driver': 'OL', 'value': 0, 'uom': 51}
+    ]
+    id = 'STD_LAMP'
+    commands = {
+        'DON': HubitatBase.hubitatCtl, 'DOF': HubitatBase.hubitatCtl, 'QUERY': query,
+        'SETLVL': HubitatBase.hubitatCtl
+    }
+
+class RgbLampNode(HubitatBase):
+    def __init__(self, controller, primary, address, name):
+        super().__init__(controller, primary, address, name)
+
+    def start(self):
+        pass
+
+    def setOn(self, command):
+        self.setDriver('ST', 100)
+
+    def setOff(self, command):
+        self.setDriver('ST', 0)
+
+    def query(self):
+        HubitatBase.hubitatRefresh(self)
+
+    drivers = [
+        {'driver': 'ST', 'value': 0, 'uom': 78},
+        {'driver': 'OL', 'value': 0, 'uom': 51},
+        {'driver': 'GV3', 'value': 0, 'uom': 56},
+        {'driver': 'GV4', 'value': 0, 'uom': 100},
+        {'driver': 'GV5', 'value': 0, 'uom': 25},
+        {'driver': 'GV6', 'value': 0, 'uom': 26}
+    ]
+
+    id = 'COLOR_LIGHT'
+    commands = {
+        'DON': HubitatBase.hubitatCtl, 'DOF': HubitatBase.hubitatCtl, 'QUERY': query,
+        'SETLVL': HubitatBase.hubitatCtl, 'SET_HUE': HubitatBase.hubitatCtl,
+        'SET_SAT': HubitatBase.hubitatCtl, 'SET_KELVIN': HubitatBase.hubitatCtl
+    }
+
+class CtLampNode(HubitatBase):
+    def __init__(self, controller, primary, address, name):
+        super().__init__(controller, primary, address, name)
+
+    def start(self):
+        pass
+
+    def setOn(self, command):
+        self.setDriver('ST', 100)
+
+    def setOff(self, command):
+        self.setDriver('ST', 0)
+
+    def query(self):
+        HubitatBase.hubitatRefresh(self)
+
+    drivers = [
+        {'driver': 'ST', 'value': 0, 'uom': 78},
+        {'driver': 'OL', 'value': 0, 'uom': 51},
+        {'driver': 'GV6', 'value': 0, 'uom': 26}
+    ]
+
+    id = 'COLOR_LIGHT'
+    commands = {
+        'DON': HubitatBase.hubitatCtl, 'DOF': HubitatBase.hubitatCtl, 'QUERY': query,
+        'SETLVL': HubitatBase.hubitatCtl, 'SET_KELVIN': HubitatBase.hubitatCtl
+    }
+
+class EnergyOutletNode(HubitatBase):
+    def __init__(self, controller, primary, address, name):
+        super().__init__(controller, primary, address, name)
+
+    def query(self):
+        HubitatBase.hubitatRefresh(self)
+
+    drivers = [
+        {'driver': 'ST', 'value': 0, 'uom': 78},  # Status
+        {'driver': 'CC', 'value': 0, 'uom': 1},  # Current - (Amps)
+        {'driver': 'CPW', 'value': 0, 'uom': 73},  # Current Power Used (Watts)
+        {'driver': 'CV', 'value': 0, 'uom': 72},  # Current Voltage
+        {'driver': 'TPW', 'value': 0, 'uom': 33},  # Total Power Used (energy)
+        {'driver': 'GV0', 'value': 0, 'uom': 73},  # currentH
+        {'driver': 'GV1', 'value': 0, 'uom': 73},  # currentL
+        {'driver': 'GV2', 'value': 0, 'uom': 33},  # powerH
+        {'driver': 'GV3', 'value': 0, 'uom': 33},  # powerL
+        {'driver': 'GV4', 'value': 0, 'uom': 72},  # voltageH
+        {'driver': 'GV5', 'value': 0, 'uom': 72},  # voltageL
+        {'driver': 'GV6', 'value': 0, 'uom': 45}  # energy duration
+    ]
+    id = 'ENERGY_OUTLET'
+    commands = {
+        'DON': HubitatBase.hubitatCtl, 'DOF': HubitatBase.hubitatCtl, 'QUERY': query
+    }
+
+class OutletNode(HubitatBase):
+    def __init__(self, controller, primary, address, name):
+        super().__init__(controller, primary, address, name)
+
+    def query(self):
+        HubitatBase.hubitatRefresh(self)
+
+    drivers = [
+        {'driver': 'ST', 'value': 0, 'uom': 78},  # Status
+    ]
+    id = 'OUTLET'
+    commands = {
+        'DON': HubitatBase.hubitatCtl, 'DOF': HubitatBase.hubitatCtl, 'QUERY': query
+    }
+
+
+
+'''Original Classes'''
 class VirtualSwitchNode(HubitatBase):
     def __init__(self, controller, primary, address, name):
         super().__init__(controller, primary, address, name)
@@ -175,92 +305,6 @@ class ZWaveSwitchNode(HubitatBase):
         'DON': HubitatBase.hubitatCtl, 'DOF': HubitatBase.hubitatCtl, 'QUERY': query
     }
 
-
-class StdLampNode(HubitatBase):
-    def __init__(self, controller, primary, address, name):
-        super().__init__(controller, primary, address, name)
-
-    def start(self):
-        pass
-
-    def setOn(self, command):
-        self.setDriver('ST', 100)
-
-    def setOff(self, command):
-        self.setDriver('ST', 0)
-
-    def query(self):
-        HubitatBase.hubitatRefresh(self)
-
-    drivers = [
-        {'driver': 'ST', 'value': 0, 'uom': 78},
-        {'driver': 'OL', 'value': 0, 'uom': 51}
-    ]
-    id = 'STD_LAMP'
-    commands = {
-        'DON': HubitatBase.hubitatCtl, 'DOF': HubitatBase.hubitatCtl, 'QUERY': query,
-        'SETLVL': HubitatBase.hubitatCtl
-    }
-
-class RgbLampNode(HubitatBase):
-    def __init__(self, controller, primary, address, name):
-        super().__init__(controller, primary, address, name)
-
-    def start(self):
-        pass
-
-    def setOn(self, command):
-        self.setDriver('ST', 100)
-
-    def setOff(self, command):
-        self.setDriver('ST', 0)
-
-    def query(self):
-        HubitatBase.hubitatRefresh(self)
-
-    drivers = [
-        {'driver': 'ST', 'value': 0, 'uom': 78},
-        {'driver': 'OL', 'value': 0, 'uom': 51},
-        {'driver': 'GV3', 'value': 0, 'uom': 56},
-        {'driver': 'GV4', 'value': 0, 'uom': 100},
-        {'driver': 'GV5', 'value': 0, 'uom': 25},
-        {'driver': 'GV6', 'value': 0, 'uom': 26}
-    ]
-
-    id = 'COLOR_LIGHT'
-    commands = {
-        'DON': HubitatBase.hubitatCtl, 'DOF': HubitatBase.hubitatCtl, 'QUERY': query,
-        'SETLVL': HubitatBase.hubitatCtl, 'SET_HUE': HubitatBase.hubitatCtl,
-        'SET_SAT': HubitatBase.hubitatCtl, 'SET_KELVIN': HubitatBase.hubitatCtl
-    }
-
-class CtLampNode(HubitatBase):
-    def __init__(self, controller, primary, address, name):
-        super().__init__(controller, primary, address, name)
-
-    def start(self):
-        pass
-
-    def setOn(self, command):
-        self.setDriver('ST', 100)
-
-    def setOff(self, command):
-        self.setDriver('ST', 0)
-
-    def query(self):
-        HubitatBase.hubitatRefresh(self)
-
-    drivers = [
-        {'driver': 'ST', 'value': 0, 'uom': 78},
-        {'driver': 'OL', 'value': 0, 'uom': 51},
-        {'driver': 'GV6', 'value': 0, 'uom': 26}
-    ]
-
-    id = 'COLOR_LIGHT'
-    commands = {
-        'DON': HubitatBase.hubitatCtl, 'DOF': HubitatBase.hubitatCtl, 'QUERY': query,
-        'SETLVL': HubitatBase.hubitatCtl, 'SET_KELVIN': HubitatBase.hubitatCtl
-    }
 
 
 class ZWaveDimmerNode(HubitatBase):

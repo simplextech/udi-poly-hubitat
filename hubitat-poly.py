@@ -72,12 +72,12 @@ class Controller(polyinterface.Controller):
             _type = dev['type']
             _id = dev['id']
 
-            if dev['type'] == 'Virtual Switch':
-                self.addNode(node_types.VirtualSwitchNode(self, self.address, _id, _label))
-            if dev['type'] == 'Generic Z-Wave Switch':
-                self.addNode(node_types.ZWaveSwitchNode(self, self.address, _id, _label))
-            if dev['type'] == 'Generic Z-Wave Dimmer':
-                self.addNode(node_types.ZWaveDimmerNode(self, self.address, _id, _label))
+            # if dev['type'] == 'Virtual Switch':
+            #     self.addNode(node_types.VirtualSwitchNode(self, self.address, _id, _label))
+            # if dev['type'] == 'Generic Z-Wave Switch':
+            #     self.addNode(node_types.ZWaveSwitchNode(self, self.address, _id, _label))
+            # if dev['type'] == 'Generic Z-Wave Dimmer':
+            #     self.addNode(node_types.ZWaveDimmerNode(self, self.address, _id, _label))
             # if dev['type'] == 'Generic Zigbee Bulb':
             #     self.addNode(node_types.ZigbeeBulbNode(self, self.address, _id, _label))
             if dev['type'] == 'NYCE Motion Sensor Series':
@@ -88,8 +88,8 @@ class Controller(polyinterface.Controller):
                 self.addNode(node_types.HueMotionSensorNode(self, self.address, _id, _label))
             if dev['type'] == 'Dome Motion Sensor':
                 self.addNode(node_types.DomeMotionSensorNode(self, self.address, _id, _label))
-            if dev['type'] == 'Zooz Power Switch':
-                self.addNode(node_types.ZoozPowerSwitchNode(self, self.address, _id, _label))
+            # if dev['type'] == 'Zooz Power Switch':
+            #     self.addNode(node_types.ZoozPowerSwitchNode(self, self.address, _id, _label))
             if dev['type'] == 'Fibaro Motion Sensor ZW5':
                 self.addNode(node_types.FibaroZW5Node(self, self.address, _id, _label))
             if dev['type'] == 'Lutron Pico':
@@ -105,6 +105,14 @@ class Controller(polyinterface.Controller):
                         self.addNode(node_types.CtLampNode(self, self.address, _id, _label))
                 else:
                     self.addNode(node_types.StdLampNode(self, self.address, _id, _label))
+
+            if 'Outlet' in dev['capabilities']:
+                if 'EnergyMeter' in dev['capabilities']:
+                    self.addNode(node_types.EnergyOutletNode(self, self.address, _id, _label))
+                else:
+                    self.addNode(node_types.OutletNode(self, self.address, _id, _label))
+
+
 
 
         # Build node list

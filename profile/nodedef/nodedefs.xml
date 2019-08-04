@@ -16,40 +16,10 @@
         </cmds>
     </nodeDef>
 
-    <nodeDef id="vswitchnode" nls="virtsw">
-        <editors />
-        <sts>
-            <st id="ST" editor="STATUS" />
-        </sts>
-        <cmds>
-            <sends />
-            <accepts>
-                <cmd id="DON" />
-                <cmd id="DOF" />
-                <cmd id="QUERY" />
-            </accepts>
-        </cmds>
-    </nodeDef>
+    <!--New Generalized definitions -->
 
-    <nodeDef id="zwswnode" nls="zwsw">
-        <editors />
-        <sts>
-            <st id="ST" editor="STATUS" />
-        </sts>
-        <cmds>
-            <sends>
-                <cmd id="DON" />
-                <cmd id="DOF" />
-            </sends>
-            <accepts>
-                <cmd id="DON" />
-                <cmd id="DOF" />
-                <cmd id="QUERY" />
-            </accepts>
-        </cmds>
-    </nodeDef>
-
-    <nodeDef id="zwdimnode" nls="zwdim">
+    <!--Generic Lamp/Bulb -->
+     <nodeDef id="STD_LAMP" nls="STDL">
         <editors />
         <sts>
             <st id="ST" editor="STATUS" />
@@ -73,31 +43,7 @@
         </cmds>
     </nodeDef>
 
-    <nodeDef id="STD_LAMP" nls="STDL">
-        <editors />
-        <sts>
-            <st id="ST" editor="STATUS" />
-            <st id="OL" editor="OL"/>
-        </sts>
-        <cmds>
-            <sends>
-                <cmd id="DON" />
-                <cmd id="DOF" />
-                <cmd id="OL" />
-            </sends>
-            <accepts>
-                <cmd id="DON" />
-                <cmd id="DOF" />
-                <cmd id="OL" />
-                <cmd id="QUERY" />
-                <cmd id="SETLVL">
-                    <p id="" editor="OL"/>
-                </cmd>
-            </accepts>
-        </cmds>
-    </nodeDef>
-
-    <!-- Color Light -->
+    <!-- Color Lamp/Bulb/Light -->
     <nodeDef id="COLOR_LIGHT" nls="ZCL">
         <editors />
         <sts>
@@ -179,6 +125,115 @@
             </accepts>
         </cmds>
     </nodeDef>
+
+    <nodeDef id="ENERGY_OUTLET" nls="EOUTLET">
+        <editors />
+        <sts>
+            <st id="ST" editor="STATUS" />
+            <st id="CC" editor="CC" />
+            <st id="CPW" editor="CPW" />
+            <st id="CV" editor="CV" />
+            <st id="TPW" editor="TPW" />
+            <st id="GV0" editor="CURRENT_H" />
+            <st id="GV1" editor="CURRENT_L" />
+            <st id="GV2" editor="POWER_H" />
+            <st id="GV3" editor="POWER_L" />
+            <st id="GV4" editor="VOLTAGE_H" />
+            <st id="GV5" editor="VOLTAGE_L" />
+            <st id="GV6" editor="ENERGY_DURATION" />
+        </sts>
+        <cmds>
+            <sends />
+            <accepts>
+                <cmd id="DON" />
+                <cmd id="DOF" />
+                <cmd id="QUERY" />
+            </accepts>
+        </cmds>
+    </nodeDef>
+
+    <nodeDef id="OUTLET" nls="OUTLET">
+        <editors />
+        <sts>
+            <st id="ST" editor="STATUS" />
+        </sts>
+        <cmds>
+            <sends />
+            <accepts>
+                <cmd id="DON" />
+                <cmd id="DOF" />
+                <cmd id="QUERY" />
+            </accepts>
+        </cmds>
+    </nodeDef>
+
+
+
+
+
+
+
+
+
+    <!--Old Definitions -->
+    <nodeDef id="vswitchnode" nls="virtsw">
+        <editors />
+        <sts>
+            <st id="ST" editor="STATUS" />
+        </sts>
+        <cmds>
+            <sends />
+            <accepts>
+                <cmd id="DON" />
+                <cmd id="DOF" />
+                <cmd id="QUERY" />
+            </accepts>
+        </cmds>
+    </nodeDef>
+
+    <nodeDef id="zwswnode" nls="zwsw">
+        <editors />
+        <sts>
+            <st id="ST" editor="STATUS" />
+        </sts>
+        <cmds>
+            <sends>
+                <cmd id="DON" />
+                <cmd id="DOF" />
+            </sends>
+            <accepts>
+                <cmd id="DON" />
+                <cmd id="DOF" />
+                <cmd id="QUERY" />
+            </accepts>
+        </cmds>
+    </nodeDef>
+
+    <nodeDef id="zwdimnode" nls="zwdim">
+        <editors />
+        <sts>
+            <st id="ST" editor="STATUS" />
+            <st id="OL" editor="OL"/>
+        </sts>
+        <cmds>
+            <sends>
+                <cmd id="DON" />
+                <cmd id="DOF" />
+                <cmd id="OL" />
+            </sends>
+            <accepts>
+                <cmd id="DON" />
+                <cmd id="DOF" />
+                <cmd id="OL" />
+                <cmd id="QUERY" />
+                <cmd id="SETLVL">
+                    <p id="" editor="OL"/>
+                </cmd>
+            </accepts>
+        </cmds>
+    </nodeDef>
+
+
 
     <nodeDef id="zoozpowerswitch" nls="zoozpsw">
         <editors />
