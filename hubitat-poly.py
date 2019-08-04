@@ -78,8 +78,8 @@ class Controller(polyinterface.Controller):
                 self.addNode(node_types.ZWaveSwitchNode(self, self.address, _id, _label))
             if dev['type'] == 'Generic Z-Wave Dimmer':
                 self.addNode(node_types.ZWaveDimmerNode(self, self.address, _id, _label))
-            if dev['type'] == 'Generic Zigbee Bulb':
-                self.addNode(node_types.ZigbeeBulbNode(self, self.address, _id, _label))
+            # if dev['type'] == 'Generic Zigbee Bulb':
+            #     self.addNode(node_types.ZigbeeBulbNode(self, self.address, _id, _label))
             if dev['type'] == 'NYCE Motion Sensor Series':
                 self.addNode(node_types.NYCEMotionSensorNode(self, self.address, _id, _label))
             if dev['type'] == 'Zooz 4-in-1 Sensor':
@@ -96,6 +96,16 @@ class Controller(polyinterface.Controller):
                 self.addNode(node_types.LutronPicoNode(self, self.address, _id, _label))
             if dev['type'] == 'Lutron Fast Pico':
                 self.addNode(node_types.LutronFastPicoNode(self, self.address, _id, _label))
+
+            if 'Light' in dev['capabilities']:
+                if 'ColorTemperature' in dev['capabilities']:
+                    if 'ColorControl' in dev['capabilities']:
+                        self.addNode(node_types.RgbLampNode(self, self.address, _id, _label))
+                    else:
+                        self.addNode(node_types.CtLampNode(self, self.address, _id, _label))
+                else:
+                    self.addNode(node_types.StdLampNode(self, self.address, _id, _label))
+
 
         # Build node list
         # self.node_list = []
@@ -141,6 +151,8 @@ class Controller(polyinterface.Controller):
 
                     print('----Device Info----')
                     print(event.json)
+                    print(h_name + " " + h_value)
+                    print('-------------------')
 
                     if _deviceId in self.node_list:
                         m_node = self.nodes[_deviceId]
@@ -154,6 +166,19 @@ class Controller(polyinterface.Controller):
                                 m_node.reportCmd('DOF', 2)
                         elif h_name == 'level':
                             m_node.setDriver('OL', h_value)
+                        elif h_name == 'colorMode':
+                            if h_value == 'CT':
+                                m_node.setDriver('GV5', 1)
+                            elif h_value == 'RGB':
+                                m_node.setDriver('GV5', 2)
+                            else:
+                                m_node.setDriver('GV5', 0)
+                        elif h_name == 'colorTemperature':
+                            m_node.setDriver('GV6', h_value)
+                        elif h_name == 'hue':
+                            m_node.setDriver('GV3', h_value)
+                        elif h_name == 'saturation':
+                            m_node.setDriver('GV4', h_value)
                         elif h_name == 'motion':
                             if h_value == 'active':
                                 m_node.setDriver('ST', 100)

@@ -84,4 +84,28 @@
         <range uom="25" subset="0-5" nls="PICO_BUTTON" />
     </editor>
 
+    <!-- Hue Editor -->
+    <editor id="ZCLHUE">
+        <range uom="56" min="0" max="100" prec="0" step="1" />
+    </editor>
+
+    <!-- Saturation Editor -->
+    <editor id="ZCLSAT">
+        <range uom="100" min="0" max="100" prec="0" step="1" />
+    </editor>
+
+    <!-- Hue Kelvin Editor -->
+    <editor id="KELVIN">
+        <range uom="26" min="2000" max="6535" prec="0" step="1" />
+    </editor>
+
+    <!-- Hue Duration Editor -->
+    <editor id="HDURATION">
+        <range uom="57" min="0" max="300" prec="0" step="1" />
+    </editor>
+
+    <editor id="COLOR_MODE">
+        <range uom="25" subset="0-2" nls="COLOR_MODE" />
+    </editor>
+
 </editors>

@@ -19,6 +19,10 @@ CMD-FDDOWN-NAME = Fade Down
 CMD-FDSTOP-NAME = Fade Stop
 CMD-QUERY-NAME = Query
 CMD-SETLVL-NAME = Set Level
+CMD-SET_HUE-NAME = Set Hue
+CMD-SET_SAT-NAME = Set Saturation
+CMD-SET_KELVIN-NAME = Set Color Temperature
+
 
 # virtualswitch
 ND-vswitchnode-NAME = Virtual Switch
@@ -36,11 +40,21 @@ ND-zwdimnode-ICON = Switch
 ST-zwdim-ST-NAME = Status
 ST-zwdim-OL-NAME = On Level
 
-# Generic ZigBeee Bulb Node
-ND-zbbulbnode-NAME = ZigBee Bulb
-ND-zbbulbnode-ICON = Lamp
-ST-zbbulb-ST-NAME = Status
-ST-zbbulb-OL-NAME = On Level
+# Generic Bulb Node
+ND-STD_LAMP-NAME = Standard Light
+ND-STD_LAMP-ICON = Lamp
+ST-STDL-ST-NAME = Status
+ST-STDL-OL-NAME = On Level
+
+# Generic RGBW Bulb Node
+ND-COLOR_LIGHT-NAME = Color Light
+ND-COLOR_LIGHT-ICON = Lamp
+ST-ZCL-ST-NAME = Status
+ST-ZCL-OL-NAME = On Level
+ST-ZCL-GV3-NAME = Hue
+ST-ZCL-GV4-NAME = Saturation
+ST-ZCL-GV5-NAME = Color Mode
+ST-ZCL-GV6-NAME = Color Temperature
 
 # zoozpowerswitch
 ND-zoozpowerswitch-NAME = Zooz Power Switch
@@ -121,3 +135,8 @@ PICO_BUTTON-2 = 2
 PICO_BUTTON-3 = 3
 PICO_BUTTON-4 = 4
 PICO_BUTTON-5 = 5
+
+# Color Modes
+COLOR_MODE-0 = N/A
+COLOR_MODE-1 = CT
+COLOR_MODE-2 = RGB

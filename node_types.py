@@ -1,4 +1,4 @@
-""" Node classes used by the Hue Node Server. """
+""" Node classes used by the Hubitat Node Server. """
 
 import polyinterface
 import requests
@@ -46,6 +46,18 @@ class HubitatBase(polyinterface.Node):
             # print(cmd_uri)
         elif cmd == 'SETLVL':
             h_cmd = 'setLevel'
+            cmd_uri = _raw_http + '/' + h_cmd + '/' + val + '?' + _raw_uri[1]
+            requests.get(cmd_uri)
+        elif cmd == 'SET_HUE':
+            h_cmd = 'setHue'
+            cmd_uri = _raw_http + '/' + h_cmd + '/' + val + '?' + _raw_uri[1]
+            requests.get(cmd_uri)
+        elif cmd == 'SET_SAT':
+            h_cmd = 'setSaturation'
+            cmd_uri = _raw_http + '/' + h_cmd + '/' + val + '?' + _raw_uri[1]
+            requests.get(cmd_uri)
+        elif cmd == 'SET_KELVIN':
+            h_cmd = 'setColorTemperature'
             cmd_uri = _raw_http + '/' + h_cmd + '/' + val + '?' + _raw_uri[1]
             requests.get(cmd_uri)
 
@@ -164,7 +176,7 @@ class ZWaveSwitchNode(HubitatBase):
     }
 
 
-class ZigbeeBulbNode(HubitatBase):
+class StdLampNode(HubitatBase):
     def __init__(self, controller, primary, address, name):
         super().__init__(controller, primary, address, name)
 
@@ -184,10 +196,70 @@ class ZigbeeBulbNode(HubitatBase):
         {'driver': 'ST', 'value': 0, 'uom': 78},
         {'driver': 'OL', 'value': 0, 'uom': 51}
     ]
-    id = 'zbbulbnode'
+    id = 'STD_LAMP'
     commands = {
         'DON': HubitatBase.hubitatCtl, 'DOF': HubitatBase.hubitatCtl, 'QUERY': query,
         'SETLVL': HubitatBase.hubitatCtl
+    }
+
+class RgbLampNode(HubitatBase):
+    def __init__(self, controller, primary, address, name):
+        super().__init__(controller, primary, address, name)
+
+    def start(self):
+        pass
+
+    def setOn(self, command):
+        self.setDriver('ST', 100)
+
+    def setOff(self, command):
+        self.setDriver('ST', 0)
+
+    def query(self):
+        HubitatBase.hubitatRefresh(self)
+
+    drivers = [
+        {'driver': 'ST', 'value': 0, 'uom': 78},
+        {'driver': 'OL', 'value': 0, 'uom': 51},
+        {'driver': 'GV3', 'value': 0, 'uom': 56},
+        {'driver': 'GV4', 'value': 0, 'uom': 100},
+        {'driver': 'GV5', 'value': 0, 'uom': 25},
+        {'driver': 'GV6', 'value': 0, 'uom': 26}
+    ]
+
+    id = 'COLOR_LIGHT'
+    commands = {
+        'DON': HubitatBase.hubitatCtl, 'DOF': HubitatBase.hubitatCtl, 'QUERY': query,
+        'SETLVL': HubitatBase.hubitatCtl, 'SET_HUE': HubitatBase.hubitatCtl,
+        'SET_SAT': HubitatBase.hubitatCtl, 'SET_KELVIN': HubitatBase.hubitatCtl
+    }
+
+class CtLampNode(HubitatBase):
+    def __init__(self, controller, primary, address, name):
+        super().__init__(controller, primary, address, name)
+
+    def start(self):
+        pass
+
+    def setOn(self, command):
+        self.setDriver('ST', 100)
+
+    def setOff(self, command):
+        self.setDriver('ST', 0)
+
+    def query(self):
+        HubitatBase.hubitatRefresh(self)
+
+    drivers = [
+        {'driver': 'ST', 'value': 0, 'uom': 78},
+        {'driver': 'OL', 'value': 0, 'uom': 51},
+        {'driver': 'GV6', 'value': 0, 'uom': 26}
+    ]
+
+    id = 'COLOR_LIGHT'
+    commands = {
+        'DON': HubitatBase.hubitatCtl, 'DOF': HubitatBase.hubitatCtl, 'QUERY': query,
+        'SETLVL': HubitatBase.hubitatCtl, 'SET_KELVIN': HubitatBase.hubitatCtl
     }
 
 
