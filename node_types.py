@@ -110,6 +110,7 @@ class StdLampNode(HubitatBase):
         'SETLVL': HubitatBase.hubitatCtl
     }
 
+
 class RgbLampNode(HubitatBase):
     def __init__(self, controller, primary, address, name):
         super().__init__(controller, primary, address, name)
@@ -142,6 +143,7 @@ class RgbLampNode(HubitatBase):
         'SET_SAT': HubitatBase.hubitatCtl, 'SET_KELVIN': HubitatBase.hubitatCtl
     }
 
+
 class CtLampNode(HubitatBase):
     def __init__(self, controller, primary, address, name):
         super().__init__(controller, primary, address, name)
@@ -170,6 +172,7 @@ class CtLampNode(HubitatBase):
         'SETLVL': HubitatBase.hubitatCtl, 'SET_KELVIN': HubitatBase.hubitatCtl
     }
 
+
 class EnergyOutletNode(HubitatBase):
     def __init__(self, controller, primary, address, name):
         super().__init__(controller, primary, address, name)
@@ -196,6 +199,7 @@ class EnergyOutletNode(HubitatBase):
         'DON': HubitatBase.hubitatCtl, 'DOF': HubitatBase.hubitatCtl, 'QUERY': query
     }
 
+
 class OutletNode(HubitatBase):
     def __init__(self, controller, primary, address, name):
         super().__init__(controller, primary, address, name)
@@ -210,6 +214,7 @@ class OutletNode(HubitatBase):
     commands = {
         'DON': HubitatBase.hubitatCtl, 'DOF': HubitatBase.hubitatCtl, 'QUERY': query
     }
+
 
 class SwitchNode(HubitatBase):
     def __init__(self, controller, primary, address, name):
@@ -233,6 +238,7 @@ class SwitchNode(HubitatBase):
     commands = {
         'DON': HubitatBase.hubitatCtl, 'DOF': HubitatBase.hubitatCtl, 'QUERY': query
     }
+
 
 class DimmerNode(HubitatBase):
     def __init__(self, controller, primary, address, name):
@@ -262,20 +268,106 @@ class DimmerNode(HubitatBase):
     }
 
 
+class MultiSensorTHLA(polyinterface.Node):
 
-
-'''Original Classes'''
-class VirtualSwitchNode(HubitatBase):
     def __init__(self, controller, primary, address, name):
         super().__init__(controller, primary, address, name)
 
-    def query(self):
-        HubitatBase.hubitatRefresh(self)
-
-    drivers = [{'driver': 'ST', 'value': 0, 'uom': 78}]
-    id = 'vswitchnode'
+    drivers = [
+        {'driver': 'ST', 'value': 0, 'uom': 78},
+        {'driver': 'BATLVL', 'value': 0, 'uom': 51},
+        {'driver': 'CLITEMP', 'value': 0, 'uom': 17},
+        {'driver': 'CLIHUM', 'value': 0, 'uom': 22},
+        {'driver': 'LUMIN', 'value': 0, 'uom': 36},
+        {'driver': 'ALARM', 'value': 0, 'uom': 2}
+    ]
+    id = 'MSTHLA_SENSOR'
     commands = {
-        'DON': HubitatBase.hubitatCtl, 'DOF': HubitatBase.hubitatCtl, 'QUERY': query
+        # 'DON': setOn, 'DOF': setOff
+    }
+
+
+class MultiSensorTLAS(polyinterface.Node):
+
+    def __init__(self, controller, primary, address, name):
+        super().__init__(controller, primary, address, name)
+
+    drivers = [
+        {'driver': 'ST', 'value': 0, 'uom': 78},
+        {'driver': 'BATLVL', 'value': 0, 'uom': 51},
+        {'driver': 'CLITEMP', 'value': 0, 'uom': 17},
+        {'driver': 'LUMIN', 'value': 0, 'uom': 36},
+        {'driver': 'ALARM', 'value': 0, 'uom': 2},
+        {'driver': 'SPEED', 'value': 0, 'uom': 2}
+    ]
+    id = 'MSTLAS_SENSOR'
+    commands = {
+        # 'DON': setOn, 'DOF': setOff
+    }
+
+
+class MultiSensorTH(polyinterface.Node):
+
+    def __init__(self, controller, primary, address, name):
+        super().__init__(controller, primary, address, name)
+
+    drivers = [
+        {'driver': 'ST', 'value': 0, 'uom': 78},
+        {'driver': 'BATLVL', 'value': 0, 'uom': 51},
+        {'driver': 'CLITEMP', 'value': 0, 'uom': 17},
+        {'driver': 'CLIHUM', 'value': 0, 'uom': 22},
+    ]
+    id = 'MSTH_SENSOR'
+    commands = {
+        # 'DON': setOn, 'DOF': setOff
+    }
+
+
+class MultiSensorTL(polyinterface.Node):
+
+    def __init__(self, controller, primary, address, name):
+        super().__init__(controller, primary, address, name)
+
+    drivers = [
+        {'driver': 'ST', 'value': 0, 'uom': 78},
+        {'driver': 'BATLVL', 'value': 0, 'uom': 51},
+        {'driver': 'CLITEMP', 'value': 0, 'uom': 17},
+        {'driver': 'LUMIN', 'value': 0, 'uom': 36},
+    ]
+    id = 'MSTL_SENSOR'
+    commands = {
+        # 'DON': setOn, 'DOF': setOff
+    }
+
+
+class MultiSensorL(polyinterface.Node):
+
+    def __init__(self, controller, primary, address, name):
+        super().__init__(controller, primary, address, name)
+
+    drivers = [
+        {'driver': 'ST', 'value': 0, 'uom': 78},
+        {'driver': 'BATLVL', 'value': 0, 'uom': 51},
+        {'driver': 'LUMIN', 'value': 0, 'uom': 36},
+    ]
+    id = 'MSL_SENSOR'
+    commands = {
+        # 'DON': setOn, 'DOF': setOff
+    }
+
+
+class MotionSensor(polyinterface.Node):
+
+    def __init__(self, controller, primary, address, name):
+        super().__init__(controller, primary, address, name)
+
+    drivers = [
+        {'driver': 'ST', 'value': 0, 'uom': 78},
+        {'driver': 'BATLVL', 'value': 0, 'uom': 51},
+    ]
+    id = 'MS_SENSOR'
+    commands = {
+        # 'DON': setOn, 'DOF': setOff
     }
 
 
@@ -330,236 +422,4 @@ class LutronFastPicoNode(HubitatBase):
     id = 'fastpiconode'
     commands = {
         # 'DON': HubitatBase.hubitatCtl, 'DOF': HubitatBase.hubitatCtl, 'QUERY': query
-    }
-
-
-class ZWaveSwitchNode(HubitatBase):
-    def __init__(self, controller, primary, address, name):
-        super().__init__(controller, primary, address, name)
-
-    def start(self):
-        pass
-    #     self.setDriver('ST', 0)
-
-    def setOn(self, command):
-        self.setDriver('ST', 100)
-
-    def setOff(self, command):
-        self.setDriver('ST', 0)
-
-    def query(self):
-        HubitatBase.hubitatRefresh(self)
-
-    drivers = [{'driver': 'ST', 'value': 0, 'uom': 78}]
-    id = 'zwswnode'
-    commands = {
-        'DON': HubitatBase.hubitatCtl, 'DOF': HubitatBase.hubitatCtl, 'QUERY': query
-    }
-
-
-class ZWaveDimmerNode(HubitatBase):
-    def __init__(self, controller, primary, address, name):
-        super().__init__(controller, primary, address, name)
-
-    def start(self):
-        pass
-    #     self.setDriver('ST', 0)
-
-    def setOn(self, command):
-        self.setDriver('ST', 100)
-
-    def setOff(self, command):
-        self.setDriver('ST', 0)
-
-    def query(self):
-        HubitatBase.hubitatRefresh(self)
-
-    drivers = [
-        {'driver': 'ST', 'value': 0, 'uom': 78},
-        {'driver': 'OL', 'value': 0, 'uom': 51}
-    ]
-    id = 'zwdimnode'
-    commands = {
-        'DON': HubitatBase.hubitatCtl, 'DOF': HubitatBase.hubitatCtl, 'QUERY': query,
-        'SETLVL': HubitatBase.hubitatCtl
-    }
-
-
-class ZoozPowerSwitchNode(HubitatBase):
-    def __init__(self, controller, primary, address, name):
-        super().__init__(controller, primary, address, name)
-
-    def query(self):
-        HubitatBase.hubitatRefresh(self)
-
-    drivers = [
-        {'driver': 'ST', 'value': 0, 'uom': 78},  # Status
-        {'driver': 'CC', 'value': 0, 'uom': 1},  # Current - (Amps)
-        {'driver': 'CPW', 'value': 0, 'uom': 73},  # Current Power Used (Watts)
-        {'driver': 'CV', 'value': 0, 'uom': 72},  # Current Voltage
-        {'driver': 'TPW', 'value': 0, 'uom': 33},  # Total Power Used (energy)
-        {'driver': 'GV0', 'value': 0, 'uom': 73},  # currentH
-        {'driver': 'GV1', 'value': 0, 'uom': 73},  # currentL
-        {'driver': 'GV2', 'value': 0, 'uom': 33},  # powerH
-        {'driver': 'GV3', 'value': 0, 'uom': 33},  # powerL
-        {'driver': 'GV4', 'value': 0, 'uom': 72},  # voltageH
-        {'driver': 'GV5', 'value': 0, 'uom': 72},  # voltageL
-        {'driver': 'GV6', 'value': 0, 'uom': 45}  # energy duration
-    ]
-    id = 'zoozpowerswitch'
-    commands = {
-        'DON': HubitatBase.hubitatCtl, 'DOF': HubitatBase.hubitatCtl, 'QUERY': query
-    }
-
-
-class NYCEMotionSensorNode(polyinterface.Node):
-
-    def __init__(self, controller, primary, address, name):
-        super(NYCEMotionSensorNode, self).__init__(controller, primary, address, name)
-
-    def start(self):
-        pass
-    #     self.setDriver('ST', 0)
-
-    def setOn(self, command):
-        self.setDriver('ST', 100)
-
-    def setOff(self, command):
-        self.setDriver('ST', 0)
-
-    def query(self):
-        self.reportDrivers()
-
-    drivers = [
-        {'driver': 'ST', 'value': 0, 'uom': 78},
-        {'driver': 'BATLVL', 'value': 0, 'uom': 51},
-        {'driver': 'CLITEMP', 'value': 0, 'uom': 17},
-        {'driver': 'CLIHUM', 'value': 0, 'uom': 22}
-    ]
-    id = 'nycemsnode'
-    commands = {
-        'DON': setOn, 'DOF': setOff
-    }
-
-
-class Zooz4n1SensorNode(polyinterface.Node):
-
-    def __init__(self, controller, primary, address, name):
-        super(Zooz4n1SensorNode, self).__init__(controller, primary, address, name)
-
-    # def start(self):
-    #     self.setDriver('ST', 0)
-    #     pass
-    #
-    # def setOn(self, command):
-    #     self.setDriver('ST', 100)
-    #
-    # def setOff(self, command):
-    #     self.setDriver('ST', 0)
-    #
-    # def query(self):
-    #     self.reportDrivers()
-
-    drivers = [
-        {'driver': 'ST', 'value': 0, 'uom': 78},
-        {'driver': 'BATLVL', 'value': 0, 'uom': 51},
-        {'driver': 'CLITEMP', 'value': 0, 'uom': 17},
-        {'driver': 'CLIHUM', 'value': 0, 'uom': 22},
-        {'driver': 'LUMIN', 'value': 0, 'uom': 36},
-        {'driver': 'ALARM', 'value': 0, 'uom': 2}
-    ]
-    id = 'zooz4n1sensor'
-    commands = {
-        # 'DON': setOn, 'DOF': setOff
-    }
-
-
-class HueMotionSensorNode(polyinterface.Node):
-
-    def __init__(self, controller, primary, address, name):
-        super(HueMotionSensorNode, self).__init__(controller, primary, address, name)
-
-    # def start(self):
-    #     self.setDriver('ST', 0)
-    #     pass
-    #
-    # def setOn(self, command):
-    #     self.setDriver('ST', 100)
-    #
-    # def setOff(self, command):
-    #     self.setDriver('ST', 0)
-    #
-    # def query(self):
-    #     self.reportDrivers()
-
-    drivers = [
-        {'driver': 'ST', 'value': 0, 'uom': 78},
-        {'driver': 'BATLVL', 'value': 0, 'uom': 51},
-        {'driver': 'CLITEMP', 'value': 0, 'uom': 17},
-        {'driver': 'LUMIN', 'value': 0, 'uom': 36}
-    ]
-    id = 'huemotion'
-    commands = {
-        # 'DON': setOn, 'DOF': setOff
-    }
-
-
-class DomeMotionSensorNode(polyinterface.Node):
-
-    def __init__(self, controller, primary, address, name):
-        super(DomeMotionSensorNode, self).__init__(controller, primary, address, name)
-
-    # def start(self):
-    #     self.setDriver('ST', 0)
-    #     pass
-    #
-    # def setOn(self, command):
-    #     self.setDriver('ST', 100)
-    #
-    # def setOff(self, command):
-    #     self.setDriver('ST', 0)
-    #
-    # def query(self):
-    #     self.reportDrivers()
-
-    drivers = [
-        {'driver': 'ST', 'value': 0, 'uom': 78},
-        {'driver': 'BATLVL', 'value': 0, 'uom': 51},
-        {'driver': 'LUMIN', 'value': 0, 'uom': 36},
-    ]
-    id = 'domemotionsensor'
-    commands = {
-        # 'DON': setOn, 'DOF': setOff
-    }
-
-
-class FibaroZW5Node(polyinterface.Node):
-
-    def __init__(self, controller, primary, address, name):
-        super(FibaroZW5Node, self).__init__(controller, primary, address, name)
-
-    # def start(self):
-    #     self.setDriver('ST', 0)
-    #     pass
-    #
-    # def setOn(self, command):
-    #     self.setDriver('ST', 100)
-    #
-    # def setOff(self, command):
-    #     self.setDriver('ST', 0)
-    #
-    # def query(self):
-    #     self.reportDrivers()
-
-    drivers = [
-        {'driver': 'ST', 'value': 0, 'uom': 78},
-        {'driver': 'BATLVL', 'value': 0, 'uom': 51},
-        {'driver': 'CLITEMP', 'value': 0, 'uom': 17},
-        {'driver': 'LUMIN', 'value': 0, 'uom': 36},
-        {'driver': 'ALARM', 'value': 0, 'uom': 2},
-        {'driver': 'SPEED', 'value': 0, 'uom': 2}
-    ]
-    id = 'fibarozw5node'
-    commands = {
-        # 'DON': setOn, 'DOF': setOff
     }

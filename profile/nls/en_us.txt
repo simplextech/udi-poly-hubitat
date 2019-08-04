@@ -71,82 +71,57 @@ ND-DIMMER-ICON = Switch
 ST-DIMMER-ST-NAME = Status
 ST-DIMMER-OL-NAME = On Level
 
-#### Original OLD Entries
-# virtualswitch
-ND-vswitchnode-NAME = Virtual Switch
-ND-vswitchnode-ICON = Switch
-ST-virtsw-ST-NAME = Status
+# Generic Multi Sensor - Temp/Humi/Lux/Alarm (Zooz 4-n-1)
+ND-MSTHLA_SENSOR-NAME = Generic Multi-Sensor
+ND-MSTHLA_SENSOR-ICON = MotionSensor
+ST-MSTHLA-ST-NAME = Status
+ST-MSTHLA-BATLVL-NAME = Battery
+ST-MSTHLA-CLIHUM-NAME = Humidity
+ST-MSTHLA-CLITEMP-NAME = Temperature
+ST-MSTHLA-LUMIN-NAME = Illuminance
+ST-MSTHLA-ALARM-NAME = Tamper Alarm
 
-# Generic Z-Wave Switch Node
-ND-zwswnode-NAME = Z-Wave Switch
-ND-zwswnode-ICON = Switch
-ST-zwsw-ST-NAME = Status
+# Generic Multi Sensor - Temp/Lux/Alarm/Speed (Fibaro eye-ball)
+ND-MSTLAS_SENSOR-NAME = Generic Multi-Sensor
+ND-MSTLAS_SENSOR-ICON = MotionSensor
+ST-MSTLAS-ST-NAME = Status
+ST-MSTLAS-BATLVL-NAME = Battery
+ST-MSTLAS-CLITEMP-NAME = Temperature
+ST-MSTLAS-LUMIN-NAME = Illuminance
+ST-MSTLAS-ALARM-NAME = Tamper Alarm
+ST-MSTLAS-SPEED-NAME = Acceleration
 
-# Generic Z-Wave Dimmer Node
-ND-zwdimnode-NAME = Z-Wave Dimmer
-ND-zwdimnode-ICON = Switch
-ST-zwdim-ST-NAME = Status
-ST-zwdim-OL-NAME = On Level
+# Generic Multi Sensor - Temp/Humi
+ND-MSTH_SENSOR-NAME = Generic Multi-Sensor
+ND-MSTH_SENSOR-ICON = MotionSensor
+ST-MSTH-ST-NAME = Status
+ST-MSTH-BATLVL-NAME = Battery
+ST-MSTH-CLIHUM-NAME = Humidity
+ST-MSTH-CLITEMP-NAME = Temperature
 
-# zoozpowerswitch
-ND-zoozpowerswitch-NAME = Zooz Power Switch
-ND-zoozpowerswitch-ICON = Switch
-ST-zoozpsw-ST-NAME = Status
-ST-zoozpsw-CC-NAME = Current (Amps)
-ST-zoozpsw-CPW-NAME = Power (Watts)
-ST-zoozpsw-CV-NAME = Voltage
-ST-zoozpsw-TPW-NAME = Total Power Used (energy)
-ST-zoozpsw-GV0-NAME = Current High
-ST-zoozpsw-GV1-NAME = Current Low
-ST-zoozpsw-GV2-NAME = Power High
-ST-zoozpsw-GV3-NAME = Power Low
-ST-zoozpsw-GV4-NAME = Voltage High
-ST-zoozpsw-GV5-NAME = Voltage Low
-ST-zoozpsw-GV6-NAME = Duration
+# Generic Multi Sensor - Temp/Lux
+ND-MSTL_SENSOR-NAME = Generic Multi-Sensor
+ND-MSTL_SENSOR-ICON = MotionSensor
+ST-MSTL-ST-NAME = Status
+ST-MSTL-BATLVL-NAME = Battery
+ST-MSTL-CLITEMP-NAME = Temperature
+ST-MSTL-LUMIN-NAME = Illuminance
 
-# nycemsnode
-ND-nycemsnode-NAME = NYCE Motion Sensor
-ND-nycemsnode-ICON = MotionSensor
-ST-nycems-ST-NAME = Status
-ST-nycems-BATLVL-NAME = Battery
-ST-nycems-CLIHUM-NAME = Humidity
-ST-nycems-CLITEMP-NAME = Temperature
+# Generic Multi Sensor - Lux
+ND-MSL_SENSOR-NAME = Generic Multi-Sensor
+ND-MSL_SENSOR-ICON = MotionSensor
+ST-MSL-ST-NAME = Status
+ST-MSL-BATLVL-NAME = Battery
+ST-MSL-LUMIN-NAME = Illuminance
 
-# zooz4n1sensor
-ND-zooz4n1sensor-NAME = Zooz 4-in-1 Sensor
-ND-zooz4n1sensor-ICON = MotionSensor
-ST-z4n1-ST-NAME = Status
-ST-z4n1-BATLVL-NAME = Battery
-ST-z4n1-CLIHUM-NAME = Humidity
-ST-z4n1-CLITEMP-NAME = Temperature
-ST-z4n1-LUMIN-NAME = Illuminance
-ST-z4n1-ALARM-NAME = Tamper Alarm
+# Generic Motion Sensor
+ND-MS_SENSOR-NAME = Generic Motion Sensor
+ND-MS_SENSOR-ICON = MotionSensor
+ST-MS-ST-NAME = Status
+ST-MS-BATLVL-NAME = Battery
 
-# huemotionsensor
-ND-huemotion-NAME = Hue Motion Sensor
-ND-huemotion-ICON = MotionSensor
-ST-huems-ST-NAME = Status
-ST-huems-BATLVL-NAME = Battery
-ST-huems-CLITEMP-NAME = Temperature
-ST-huems-LUMIN-NAME = Illuminance
 
-# domemotionsensor
-ND-domemotionsensor-NAME = Dome Motion Sensor
-ND-domemotionsensor-ICON = MotionSensor
-ST-domems-ST-NAME = Status
-ST-domems-BATLVL-NAME = Battery
-ST-domems-LUMIN-NAME = Illuminance
-
-# fibarozw5node
-ND-fibarozw5node-NAME = Fibaro Motion Sensor ZW5
-ND-fibarozw5node-ICON = MotionSensor
-ST-fibarozw5-ST-NAME = Status
-ST-fibarozw5-BATLVL-NAME = Battery
-ST-fibarozw5-CLITEMP-NAME = Temperature
-ST-fibarozw5-LUMIN-NAME = Illuminance
-ST-fibarozw5-ALARM-NAME = Tamper Alarm
-ST-fibarozw5-SPEED-NAME = Acceleration
-
+###### Original Entries ######
 # Lutron Pico
 ND-piconode-NAME = Pico Remote
 ND-piconode-ICON = Switch

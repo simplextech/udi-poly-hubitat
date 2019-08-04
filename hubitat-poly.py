@@ -80,18 +80,18 @@ class Controller(polyinterface.Controller):
             #     self.addNode(node_types.ZWaveDimmerNode(self, self.address, _id, _label))
             # if dev['type'] == 'Generic Zigbee Bulb':
             #     self.addNode(node_types.ZigbeeBulbNode(self, self.address, _id, _label))
-            if dev['type'] == 'NYCE Motion Sensor Series':
-                self.addNode(node_types.NYCEMotionSensorNode(self, self.address, _id, _label))
-            if dev['type'] == 'Zooz 4-in-1 Sensor':
-                self.addNode(node_types.Zooz4n1SensorNode(self, self.address, _id, _label))
-            if dev['type'] == 'Hue Motion Sensor':
-                self.addNode(node_types.HueMotionSensorNode(self, self.address, _id, _label))
-            if dev['type'] == 'Dome Motion Sensor':
-                self.addNode(node_types.DomeMotionSensorNode(self, self.address, _id, _label))
-            # if dev['type'] == 'Zooz Power Switch':
-            #     self.addNode(node_types.ZoozPowerSwitchNode(self, self.address, _id, _label))
-            if dev['type'] == 'Fibaro Motion Sensor ZW5':
-                self.addNode(node_types.FibaroZW5Node(self, self.address, _id, _label))
+            # if dev['type'] == 'NYCE Motion Sensor Series':
+            #     self.addNode(node_types.NYCEMotionSensorNode(self, self.address, _id, _label))
+            # if dev['type'] == 'Zooz 4-in-1 Sensor':
+            #     self.addNode(node_types.Zooz4n1SensorNode(self, self.address, _id, _label))
+            # if dev['type'] == 'Hue Motion Sensor':
+            #     self.addNode(node_types.HueMotionSensorNode(self, self.address, _id, _label))
+            # if dev['type'] == 'Dome Motion Sensor':
+            #     self.addNode(node_types.DomeMotionSensorNode(self, self.address, _id, _label))
+            # # if dev['type'] == 'Zooz Power Switch':
+            # #     self.addNode(node_types.ZoozPowerSwitchNode(self, self.address, _id, _label))
+            # if dev['type'] == 'Fibaro Motion Sensor ZW5':
+            #     self.addNode(node_types.FibaroZW5Node(self, self.address, _id, _label))
             if dev['type'] == 'Lutron Pico':
                 self.addNode(node_types.LutronPicoNode(self, self.address, _id, _label))
             if dev['type'] == 'Lutron Fast Pico':
@@ -122,8 +122,21 @@ class Controller(polyinterface.Controller):
                     else:
                         self.addNode(node_types.SwitchNode(self, self.address, _id, _label))
 
-
-
+            if 'MotionSensor' in dev['capabilities']:
+                if 'TemperatureMeasurement' in dev['capabilities'] and 'IlluminanceMeasurement' in dev['capabilities']:
+                    if 'AccelerationSensor' in dev['capabilities']:
+                        self.addNode(node_types.MultiSensorTLAS(self, self.address, _id, _label))
+                    elif 'RelativeHumidityMeasurement' in dev['capabilities']:
+                        self.addNode(node_types.MultiSensorTHLA(self, self.address, _id, _label))
+                    else:
+                        self.addNode(node_types.MultiSensorTL(self, self.address, _id, _label))
+                elif 'TemperatureMeasurement' in dev['capabilities'] and 'RelativeHumidityMeasurement' in dev['capabilities']:
+                    if 'IlluminanceMeasurement' not in dev['capabilities']:
+                        self.addNode(node_types.MultiSensorTH(self, self.address, _id, _label))
+                elif 'IlluminanceMeasurement' in dev['capabilities']:
+                    self.addNode(node_types.MultiSensorL(self, self.address, _id, _label))
+                else:
+                    self.addNode(node_types.MotionSensor(self, self.address, _id, _label))
 
         # Build node list
         # self.node_list = []
