@@ -316,11 +316,7 @@
     </nodeDef>
 
 
-
-
-
     <!--Old Definitions -->
-
 
     <nodeDef id="piconode" nls="pico">
         <editors />
@@ -356,4 +352,5 @@
             </accepts>
         </cmds>
     </nodeDef>
+    
 </nodeDefs>
