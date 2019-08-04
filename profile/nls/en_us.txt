@@ -65,7 +65,11 @@ ND-SWITCH-NAME = Generic Switch
 ND-SWITCH-ICON = Switch
 ST-SWITCH-ST-NAME = Status
 
-
+# Generic Dimmer Node
+ND-DIMMER-NAME = Generic Dimmer
+ND-DIMMER-ICON = Switch
+ST-DIMMER-ST-NAME = Status
+ST-DIMMER-OL-NAME = On Level
 
 #### Original OLD Entries
 # virtualswitch
