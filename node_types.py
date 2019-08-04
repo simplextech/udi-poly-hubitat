@@ -211,7 +211,28 @@ class OutletNode(HubitatBase):
         'DON': HubitatBase.hubitatCtl, 'DOF': HubitatBase.hubitatCtl, 'QUERY': query
     }
 
+class SwitchNode(HubitatBase):
+    def __init__(self, controller, primary, address, name):
+        super().__init__(controller, primary, address, name)
 
+    def start(self):
+        pass
+    #     self.setDriver('ST', 0)
+
+    def setOn(self, command):
+        self.setDriver('ST', 100)
+
+    def setOff(self, command):
+        self.setDriver('ST', 0)
+
+    def query(self):
+        HubitatBase.hubitatRefresh(self)
+
+    drivers = [{'driver': 'ST', 'value': 0, 'uom': 78}]
+    id = 'SWITCH'
+    commands = {
+        'DON': HubitatBase.hubitatCtl, 'DOF': HubitatBase.hubitatCtl, 'QUERY': query
+    }
 
 '''Original Classes'''
 class VirtualSwitchNode(HubitatBase):

@@ -167,7 +167,23 @@
         </cmds>
     </nodeDef>
 
-
+<nodeDef id="SWITCH" nls="SWITCH">
+        <editors />
+        <sts>
+            <st id="ST" editor="STATUS" />
+        </sts>
+        <cmds>
+            <sends>
+                <cmd id="DON" />
+                <cmd id="DOF" />
+            </sends>
+            <accepts>
+                <cmd id="DON" />
+                <cmd id="DOF" />
+                <cmd id="QUERY" />
+            </accepts>
+        </cmds>
+    </nodeDef>
 
 
 

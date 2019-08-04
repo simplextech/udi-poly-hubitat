@@ -60,7 +60,10 @@ ND-OUTLET-NAME = Generic Outlet
 ND-OUTLET-ICON = Switch
 ST-OUTLET-ST-NAME = Status
 
-
+# Generic Switch Node
+ND-SWITCH-NAME = Generic Switch
+ND-SWITCH-ICON = Switch
+ST-SWITCH-ST-NAME = Status
 
 
 
