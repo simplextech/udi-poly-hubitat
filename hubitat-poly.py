@@ -114,13 +114,14 @@ class Controller(polyinterface.Controller):
 
             if 'Switch' in dev['capabilities']:
                 if 'Outlet' not in dev['capabilities']:
-                    if 'Actuator' in dev['capabilities']:
-                        if 'SwitchLevel' in dev['capabilities']:
-                            self.addNode(node_types.DimmerNode(self, self.address, _id, _label))
+                    if 'Light' not in dev['capabilities']:
+                        if 'Actuator' in dev['capabilities']:
+                            if 'SwitchLevel' in dev['capabilities']:
+                                self.addNode(node_types.DimmerNode(self, self.address, _id, _label))
+                            else:
+                                self.addNode(node_types.SwitchNode(self, self.address, _id, _label))
                         else:
                             self.addNode(node_types.SwitchNode(self, self.address, _id, _label))
-                    else:
-                        self.addNode(node_types.SwitchNode(self, self.address, _id, _label))
 
             if 'MotionSensor' in dev['capabilities']:
                 if 'TemperatureMeasurement' in dev['capabilities'] and 'IlluminanceMeasurement' in dev['capabilities']:
