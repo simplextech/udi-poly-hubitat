@@ -25,12 +25,12 @@ class HubitatBase(polyinterface.Node):
         _raw_http = _raw_uri[0].replace('all', device_id)
 
         # print('debug------------------')
-        print(command.keys())
-        print(self.maker_uri)
-        print(self.name)
-        print(cmd)
-        print(val)
-        print(device_id)
+        # print(command.keys())
+        # print(self.maker_uri)
+        # print(self.name)
+        # print(cmd)
+        # print(val)
+        # print(device_id)
 
         if cmd in ['DON', 'DFON']:
             h_cmd = 'on'
