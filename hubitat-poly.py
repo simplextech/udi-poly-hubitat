@@ -18,6 +18,7 @@ class Controller(polyinterface.Controller):
         super(Controller, self).__init__(polyglot)
         self.name = 'Hubitat'
         self.node_list = []
+        self.debug_enabled = None
 
     def start(self):
         LOGGER.info('Started Hubitat')
@@ -51,9 +52,19 @@ class Controller(polyinterface.Controller):
             LOGGER.error('Hubitat Maker API URL is not defined in configuration')
             maker_st = False
 
+        if 'debug_enabled' in self.polyConfig['customParams']:
+            debug_enabled = self.polyConfig['customParams']['debug_enabled']
+            if debug_enabled == "true" or debug_enabled == "True":
+                self.debug_enabled = True
+            else:
+                self.debug_enabled = False
+        else:
+            self.addCustomParam({'debug_enabled': "False"})
+
         # Make sure they are in the params
         # self.addCustomParam({'hubitat_uri': hubitat_uri})
         self.addCustomParam({'maker_uri': maker_uri})
+
 
         if maker_uri == default_maker_uri:
             self.addNotice('Please set proper Hubitat and Maker API URI, and restart this NodeServer', 'HubitatNotice')
@@ -181,10 +192,11 @@ class Controller(polyinterface.Controller):
                     h_value = event.json['value']
                     h_name = event.json['name']
 
-                    # print('----Device Info----')
-                    # print(event.json)
-                    # print(h_name + " " + h_value)
-                    # print('-------------------')
+                    if self.debug_enabled:
+                        LOGGER.debug('---------------- Hubitat Device Info ----------------')
+                        LOGGER.debug(event.json)
+                        LOGGER.debug('Device Property: ' + h_name + " " + h_value)
+                        LOGGER.debug('-----------------------------------------------------')
 
                     if _deviceId in self.node_list:
                         m_node = self.nodes[_deviceId]
