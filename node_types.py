@@ -83,7 +83,9 @@ class HubitatBase(polyinterface.Node):
         cmd_uri = _raw_http + '/' + h_cmd + '?' + _raw_uri[1]
         requests.get(cmd_uri)
 
-'''New Class definitions for gerneralization'''
+"""
+New Class definitions for generalization
+"""
 class StdLampNode(HubitatBase):
     def __init__(self, controller, primary, address, name):
         super().__init__(controller, primary, address, name)

@@ -62,7 +62,6 @@ class Controller(polyinterface.Controller):
             self.addCustomParam({'debug_enabled': "False"})
 
         # Make sure they are in the params
-        # self.addCustomParam({'hubitat_uri': hubitat_uri})
         self.addCustomParam({'maker_uri': maker_uri})
 
 
@@ -151,7 +150,6 @@ class Controller(polyinterface.Controller):
                     self.addNode(node_types.MotionSensor(self, self.address, _id, _label))
 
         # Build node list
-        # self.node_list = []
         for node in self.nodes:
             self.node_list.append(self.nodes[node].address)
 
