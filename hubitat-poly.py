@@ -146,6 +146,8 @@ class Controller(polyinterface.Controller):
                         self.addNode(node_types.MultiSensorTH(self, self.address, _id, _label))
                 elif 'IlluminanceMeasurement' in dev['capabilities']:
                     self.addNode(node_types.MultiSensorL(self, self.address, _id, _label))
+                elif 'TemperatureMeasurement' in dev['capabilities']:
+                    self.addNode(node_types.MultiSensorT(self, self.address, _id, _label))
                 else:
                     self.addNode(node_types.MotionSensor(self, self.address, _id, _label))
 

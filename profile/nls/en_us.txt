@@ -99,6 +99,13 @@ ST-MSTH-BATLVL-NAME = Battery
 ST-MSTH-CLIHUM-NAME = Humidity
 ST-MSTH-CLITEMP-NAME = Temperature
 
+# Generic Multi Sensor - Temp
+ND-MST_SENSOR-NAME = Generic Multi-Sensor
+ND-MST_SENSOR-ICON = MotionSensor
+ST-MST-ST-NAME = Status
+ST-MST-BATLVL-NAME = Battery
+ST-MST-CLITEMP-NAME = Temperature
+
 # Generic Multi Sensor - Temp/Lux
 ND-MSTL_SENSOR-NAME = Generic Multi-Sensor
 ND-MSTL_SENSOR-ICON = MotionSensor

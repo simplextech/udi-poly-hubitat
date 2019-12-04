@@ -325,6 +325,22 @@ class MultiSensorTH(polyinterface.Node):
     }
 
 
+class MultiSensorT(polyinterface.Node):
+
+    def __init__(self, controller, primary, address, name):
+        super().__init__(controller, primary, address, name)
+
+    drivers = [
+        {'driver': 'ST', 'value': 0, 'uom': 78},
+        {'driver': 'BATLVL', 'value': 0, 'uom': 51},
+        {'driver': 'CLITEMP', 'value': 0, 'uom': 17}
+    ]
+    id = 'MST_SENSOR'
+    commands = {
+        # 'DON': setOn, 'DOF': setOff
+    }
+
+
 class MultiSensorTL(polyinterface.Node):
 
     def __init__(self, controller, primary, address, name):

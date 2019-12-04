@@ -267,6 +267,25 @@
         </cmds>
     </nodeDef>
 
+    <nodeDef id="MST_SENSOR" nls="MST">
+        <editors />
+        <sts>
+            <st id="ST" editor="STATUS" />
+            <st id="BATLVL" editor="BATLVL" />
+            <st id="CLITEMP" editor="CLITEMP" />
+        </sts>
+        <cmds>
+            <sends>
+                <cmd id="DON" />
+                <cmd id="DOF" />
+            </sends>
+            <accepts>
+                <!--<cmd id="DON" />-->
+                <!--<cmd id="DOF" />-->
+            </accepts>
+        </cmds>
+    </nodeDef>
+
     <nodeDef id="MSTL_SENSOR" nls="MSTL">
         <editors />
         <sts>
