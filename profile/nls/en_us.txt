@@ -127,6 +127,13 @@ ND-MS_SENSOR-ICON = MotionSensor
 ST-MS-ST-NAME = Status
 ST-MS-BATLVL-NAME = Battery
 
+# Generic Sensor - Temp/Humi
+ND-TH_SENSOR-NAME = Generic Temp/Humidity Sensor
+ND-TH_SENSOR-ICON = TempSensor
+ST-TH-ST-NAME = Status
+ST-TH-BATLVL-NAME = Battery
+ST-TH-CLIHUM-NAME = Humidity
+ST-TH-CLITEMP-NAME = Temperature
 
 ###### Original Entries ######
 # Lutron Pico

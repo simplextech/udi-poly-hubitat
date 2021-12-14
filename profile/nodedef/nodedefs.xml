@@ -334,6 +334,26 @@
         </cmds>
     </nodeDef>
 
+    <nodeDef id="TH_SENSOR" nls="TH">
+        <editors />
+        <sts>
+            <st id="ST" editor="STATUS" />
+            <st id="BATLVL" editor="BATLVL" />
+            <st id="CLITEMP" editor="CLITEMP" />
+            <st id="CLIHUM" editor="CLIHUM" />
+        </sts>
+        <cmds>
+            <sends>
+                <cmd id="DON" />
+                <cmd id="DOF" />
+            </sends>
+            <accepts>
+                <!--<cmd id="DON" />-->
+                <!--<cmd id="DOF" />-->
+            </accepts>
+        </cmds>
+    </nodeDef>
+
 
     <!--Old Definitions -->
 

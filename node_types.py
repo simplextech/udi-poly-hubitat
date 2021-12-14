@@ -441,3 +441,18 @@ class LutronFastPicoNode(HubitatBase):
     commands = {
         # 'DON': HubitatBase.hubitatCtl, 'DOF': HubitatBase.hubitatCtl, 'QUERY': query
     }
+
+class THSensor(polyinterface.Node):
+    def __init__(self, controller, primary, address, name):
+        super().__init__(controller, primary, address, name)
+
+    drivers = [
+        {'driver': 'ST', 'value': 0, 'uom': 78},
+        {'driver': 'BATLVL', 'value': 0, 'uom': 51},
+        {'driver': 'CLITEMP', 'value': 0, 'uom': 17},
+        {'driver': 'CLIHUM', 'value': 0, 'uom': 22},
+    ]
+    id = 'TH_SENSOR'
+    commands = {
+        # 'DON': setOn, 'DOF': setOff
+    }

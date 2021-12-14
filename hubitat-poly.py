@@ -151,6 +151,9 @@ class Controller(polyinterface.Controller):
                 else:
                     self.addNode(node_types.MotionSensor(self, self.address, _id, _label))
 
+            if dev['type'] == 'Sonoff Zigbee Temperature/Humidity Sensor':
+                self.addNode(node_types.THSensor(self, self.address, _id, _label))
+                
         # Build node list
         for node in self.nodes:
             self.node_list.append(self.nodes[node].address)
