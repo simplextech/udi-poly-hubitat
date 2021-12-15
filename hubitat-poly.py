@@ -204,101 +204,104 @@ class Controller(polyinterface.Controller):
                     if _deviceId in self.node_list:
                         m_node = self.nodes[_deviceId]
 
-                        if h_name == 'switch':
-                            if h_value == 'on':
-                                m_node.setDriver('ST', 100)
-                                m_node.reportCmd('DON', 2)
-                            elif h_value == 'off':
-                                m_node.setDriver('ST', 0)
-                                m_node.reportCmd('DOF', 2)
-                        elif h_name == 'level':
-                            m_node.setDriver('OL', h_value)
-                        elif h_name == 'colorMode':
-                            if h_value == 'CT':
-                                m_node.setDriver('GV5', 1)
-                            elif h_value == 'RGB':
-                                m_node.setDriver('GV5', 2)
+                        try:
+                            if h_name == 'switch':
+                                if h_value == 'on':
+                                    m_node.setDriver('ST', 100)
+                                    m_node.reportCmd('DON', 2)
+                                elif h_value == 'off':
+                                    m_node.setDriver('ST', 0)
+                                    m_node.reportCmd('DOF', 2)
+                            elif h_name == 'level':
+                                m_node.setDriver('OL', h_value)
+                            elif h_name == 'colorMode':
+                                if h_value == 'CT':
+                                    m_node.setDriver('GV5', 1)
+                                elif h_value == 'RGB':
+                                    m_node.setDriver('GV5', 2)
+                                else:
+                                    m_node.setDriver('GV5', 0)
+                            elif h_name == 'colorTemperature':
+                                m_node.setDriver('GV6', h_value)
+                            elif h_name == 'hue':
+                                m_node.setDriver('GV3', h_value)
+                            elif h_name == 'saturation':
+                                m_node.setDriver('GV4', h_value)
+                            elif h_name == 'motion':
+                                if h_value == 'active':
+                                    m_node.setDriver('ST', 100)
+                                    m_node.reportCmd('DON', 2)
+                                elif h_value == 'inactive':
+                                    m_node.setDriver('ST', 0)
+                                    m_node.reportCmd('DOF', 2)
+                            elif h_name == 'tamper':
+                                if h_value == 'detected':
+                                    m_node.setDriver('ALARM', 1)
+                                elif h_value == 'clear':
+                                    m_node.setDriver('ALARM', 0)
+                            elif h_name == 'acceleration':
+                                if h_value == 'active':
+                                    m_node.setDriver('SPEED', 1)
+                                elif h_value == 'inactive':
+                                    m_node.setDriver('SPEED', 0)
+                            elif h_name == 'battery':
+                                m_node.setDriver('BATLVL', h_value)
+                            elif h_name == 'temperature':
+                                m_node.setDriver('CLITEMP', h_value)
+                            elif h_name == 'humidity':
+                                m_node.setDriver('CLIHUM', h_value)
+                            elif h_name == 'illuminance':
+                                m_node.setDriver('LUMIN', h_value)
+                            elif h_name == 'current':
+                                m_node.setDriver('CC', h_value)
+                            elif h_name == 'currentH':
+                                m_node.setDriver('GV0', h_value)
+                            elif h_name == 'currentL':
+                                m_node.setDriver('GV1', h_value)
+                            elif h_name == 'energy':
+                                m_node.setDriver('TPW', h_value)
+                            elif h_name == 'power':
+                                m_node.setDriver('CPW', h_value)
+                            elif h_name == 'powerH':
+                                m_node.setDriver('GV2', h_value)
+                            elif h_name == 'powerL':
+                                m_node.setDriver('GV3', h_value)
+                            elif h_name == 'voltage':
+                                m_node.setDriver('CV', h_value)
+                            elif h_name == 'voltageH':
+                                m_node.setDriver('GV4', h_value)
+                            elif h_name == 'voltageL':
+                                m_node.setDriver('GV5', h_value)
+                            elif h_name == 'energyDuration':
+                                _h_value = h_value.split(' ')[0]
+                                m_node.setDriver('GV6', _h_value)
+                                # Lutron Pico buttons
+                            elif h_name == 'pushed':
+                                if h_value == '1':
+                                    m_node.setDriver('GV7', h_value)
+                                elif h_value == '2':
+                                    m_node.setDriver('GV7', h_value)
+                                elif h_value == '3':
+                                    m_node.setDriver('GV7', h_value)
+                                elif h_value == '4':
+                                    m_node.setDriver('GV7', h_value)
+                                elif h_value == '5':
+                                    m_node.setDriver('GV7', h_value)
+                            elif h_name == 'released':
+                                if h_value == '1':
+                                    m_node.setDriver('GV8', h_value)
+                                elif h_value == '2':
+                                    m_node.setDriver('GV8', h_value)
+                                elif h_value == '3':
+                                    m_node.setDriver('GV8', h_value)
+                                elif h_value == '4':
+                                    m_node.setDriver('GV8', h_value)
+                                elif h_value == '5':
+                                    m_node.setDriver('GV8', h_value)
                             else:
-                                m_node.setDriver('GV5', 0)
-                        elif h_name == 'colorTemperature':
-                            m_node.setDriver('GV6', h_value)
-                        elif h_name == 'hue':
-                            m_node.setDriver('GV3', h_value)
-                        elif h_name == 'saturation':
-                            m_node.setDriver('GV4', h_value)
-                        elif h_name == 'motion':
-                            if h_value == 'active':
-                                m_node.setDriver('ST', 100)
-                                m_node.reportCmd('DON', 2)
-                            elif h_value == 'inactive':
-                                m_node.setDriver('ST', 0)
-                                m_node.reportCmd('DOF', 2)
-                        elif h_name == 'tamper':
-                            if h_value == 'detected':
-                                m_node.setDriver('ALARM', 1)
-                            elif h_value == 'clear':
-                                m_node.setDriver('ALARM', 0)
-                        elif h_name == 'acceleration':
-                            if h_value == 'active':
-                                m_node.setDriver('SPEED', 1)
-                            elif h_value == 'inactive':
-                                m_node.setDriver('SPEED', 0)
-                        elif h_name == 'battery':
-                            m_node.setDriver('BATLVL', h_value)
-                        elif h_name == 'temperature':
-                            m_node.setDriver('CLITEMP', h_value)
-                        elif h_name == 'humidity':
-                            m_node.setDriver('CLIHUM', h_value)
-                        elif h_name == 'illuminance':
-                            m_node.setDriver('LUMIN', h_value)
-                        elif h_name == 'current':
-                            m_node.setDriver('CC', h_value)
-                        elif h_name == 'currentH':
-                            m_node.setDriver('GV0', h_value)
-                        elif h_name == 'currentL':
-                            m_node.setDriver('GV1', h_value)
-                        elif h_name == 'energy':
-                            m_node.setDriver('TPW', h_value)
-                        elif h_name == 'power':
-                            m_node.setDriver('CPW', h_value)
-                        elif h_name == 'powerH':
-                            m_node.setDriver('GV2', h_value)
-                        elif h_name == 'powerL':
-                            m_node.setDriver('GV3', h_value)
-                        elif h_name == 'voltage':
-                            m_node.setDriver('CV', h_value)
-                        elif h_name == 'voltageH':
-                            m_node.setDriver('GV4', h_value)
-                        elif h_name == 'voltageL':
-                            m_node.setDriver('GV5', h_value)
-                        elif h_name == 'energyDuration':
-                            _h_value = h_value.split(' ')[0]
-                            m_node.setDriver('GV6', _h_value)
-                            # Lutron Pico buttons
-                        elif h_name == 'pushed':
-                            if h_value == '1':
-                                m_node.setDriver('GV7', h_value)
-                            elif h_value == '2':
-                                m_node.setDriver('GV7', h_value)
-                            elif h_value == '3':
-                                m_node.setDriver('GV7', h_value)
-                            elif h_value == '4':
-                                m_node.setDriver('GV7', h_value)
-                            elif h_value == '5':
-                                m_node.setDriver('GV7', h_value)
-                        elif h_name == 'released':
-                            if h_value == '1':
-                                m_node.setDriver('GV8', h_value)
-                            elif h_value == '2':
-                                m_node.setDriver('GV8', h_value)
-                            elif h_value == '3':
-                                m_node.setDriver('GV8', h_value)
-                            elif h_value == '4':
-                                m_node.setDriver('GV8', h_value)
-                            elif h_value == '5':
-                                m_node.setDriver('GV8', h_value)
-                        else:
-                            print('Driver not implemented')
+                                print('Driver not implemented')
+                        except KeyError:
+                            print('Device not found in ISY')
 
     id = 'controller'
     commands = {
