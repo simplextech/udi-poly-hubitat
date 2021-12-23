@@ -12,7 +12,7 @@
         {
             "title": "Hubitat: a NodeServer for integrating the Hubitat Elevation hub",
             "author": "Simplex Technology",
-            "version": "0.1.31",
+            "version": "0.1.32",
             "date": "March 12, 2019",
             "source": "github",
             "license": "LICENSE"

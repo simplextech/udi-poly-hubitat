@@ -106,7 +106,11 @@ class Controller(polyinterface.Controller):
                 self.addNode(node_types.LutronPicoNode(self, self.address, _id, _label))
             if dev['type'] == 'Lutron Fast Pico':
                 self.addNode(node_types.LutronFastPicoNode(self, self.address, _id, _label))
-
+            if dev['type'] == 'Virtual Switch':
+                self.addNode(node_types.SwitchNode(self, self.address, _id, _label))
+            if dev['type'] == 'Virtual Dimmer':
+                self.addNode(node_types.DimmerNode(self, self.address, _id, _label))
+                pass
             if 'Light' in dev['capabilities']:
                 if 'ColorTemperature' in dev['capabilities']:
                     if 'ColorControl' in dev['capabilities']:
@@ -123,15 +127,16 @@ class Controller(polyinterface.Controller):
                     self.addNode(node_types.OutletNode(self, self.address, _id, _label))
 
             if 'Switch' in dev['capabilities']:
-                if 'Outlet' not in dev['capabilities']:
-                    if 'Light' not in dev['capabilities']:
-                        if 'Actuator' in dev['capabilities']:
-                            if 'SwitchLevel' in dev['capabilities']:
-                                self.addNode(node_types.DimmerNode(self, self.address, _id, _label))
+                if 'Virtual' not in dev['type']:
+                    if 'Outlet' not in dev['capabilities']:
+                        if 'Light' not in dev['capabilities']:
+                            if 'Actuator' in dev['capabilities']:
+                                if 'SwitchLevel' in dev['capabilities']:
+                                    self.addNode(node_types.DimmerNode(self, self.address, _id, _label))
+                                else:
+                                    self.addNode(node_types.SwitchNode(self, self.address, _id, _label))
                             else:
                                 self.addNode(node_types.SwitchNode(self, self.address, _id, _label))
-                        else:
-                            self.addNode(node_types.SwitchNode(self, self.address, _id, _label))
 
             if 'MotionSensor' in dev['capabilities']:
                 if 'TemperatureMeasurement' in dev['capabilities'] and 'IlluminanceMeasurement' in dev['capabilities']:
@@ -247,7 +252,8 @@ class Controller(polyinterface.Controller):
                             elif h_name == 'battery':
                                 m_node.setDriver('BATLVL', h_value)
                             elif h_name == 'temperature':
-                                m_node.setDriver('CLITEMP', h_value)
+                                s_temp = str(int(float(h_value)))
+                                m_node.setDriver('CLITEMP', s_temp)
                             elif h_name == 'humidity':
                                 m_node.setDriver('CLIHUM', h_value)
                             elif h_name == 'illuminance':
