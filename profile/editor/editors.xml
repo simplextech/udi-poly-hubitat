@@ -8,6 +8,10 @@
         <range uom="78" subset="0,100" />
     </editor>
 
+    <editor id="CONTACT">
+        <range uom="79" subset="0,100" />
+    </editor>
+
     <editor id="OL">
         <range uom="51" min="0" max="100" step="1" prec="0" />
     </editor>

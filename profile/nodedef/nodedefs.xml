@@ -354,6 +354,24 @@
         </cmds>
     </nodeDef>
 
+    <nodeDef id="CONTACT_SENSOR" nls="CONTACT">
+        <editors />
+        <sts>
+            <st id="ST" editor="CONTACT" />
+            <st id="BATLVL" editor="BATLVL" />
+        </sts>
+        <cmds>
+            <sends>
+                <cmd id="DON" />
+                <cmd id="DOF" />
+            </sends>
+            <accepts>
+                <!--<cmd id="DON" />-->
+                <!--<cmd id="DOF" />-->
+            </accepts>
+        </cmds>
+    </nodeDef>
+
 
     <!--Old Definitions -->
 

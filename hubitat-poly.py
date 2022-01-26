@@ -158,6 +158,9 @@ class Controller(polyinterface.Controller):
 
             if dev['type'] == 'Sonoff Zigbee Temperature/Humidity Sensor':
                 self.addNode(node_types.THSensor(self, self.address, _id, _label))
+
+            if 'ContactSensor' in dev['capabilities']:
+                self.addNode(node_types.ContactNode(self, self.address, _id, _label))
                 
         # Build node list
         for node in self.nodes:
@@ -304,6 +307,13 @@ class Controller(polyinterface.Controller):
                                     m_node.setDriver('GV8', h_value)
                                 elif h_value == '5':
                                     m_node.setDriver('GV8', h_value)
+                            elif h_name == 'contact':
+                                if h_value == 'open':
+                                    m_node.setDriver('ST', 0)
+                                    m_node.reportCmd('DON', 2)
+                                elif h_value == 'closed':
+                                    m_node.setDriver('ST', 100)
+                                    m_node.reportCmd('DOF', 2)
                             else:
                                 print('Driver not implemented')
                         except KeyError:

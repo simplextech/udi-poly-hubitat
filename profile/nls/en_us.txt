@@ -135,6 +135,12 @@ ST-TH-BATLVL-NAME = Battery
 ST-TH-CLIHUM-NAME = Humidity
 ST-TH-CLITEMP-NAME = Temperature
 
+# Generic Contact Sensor
+ND-CONTACT_SENSOR-NAME = Generic Contact Sensor
+ND-CONTACT_SENSOR-ICON = Sensor
+ST-CONTACT-ST-NAME = Status
+ST-CONTACT-BATLVL-NAME = Battery
+
 ###### Original Entries ######
 # Lutron Pico
 ND-piconode-NAME = Pico Remote

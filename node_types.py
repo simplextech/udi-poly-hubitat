@@ -456,3 +456,18 @@ class THSensor(polyinterface.Node):
     commands = {
         # 'DON': setOn, 'DOF': setOff
     }
+
+class ContactNode(HubitatBase):
+    def __init__(self, controller, primary, address, name):
+        super().__init__(controller, primary, address, name)
+
+    def query(self):
+        HubitatBase.hubitatRefresh(self)
+
+    drivers = [
+        {'driver': 'ST', 'value': 0, 'uom': 79},  # Status
+    ]
+    id = 'CONTACT_SENSOR'
+    commands = {
+        'DON': HubitatBase.hubitatCtl, 'DOF': HubitatBase.hubitatCtl, 'QUERY': query
+    }
